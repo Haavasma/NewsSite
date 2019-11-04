@@ -11,7 +11,9 @@
     "testURL": "http://localhost"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql": "^2.17.1",
     "mysql2": "^1.7.0",
     "sequelize": "^5.21.0"

@@ -1,9 +1,15 @@
 var express = require("express");
+const bcrypt = require('bcrypt');
+const BrukerDao = require('./dao/brukerdao.js');
+var jwt = require("jsonwebtoken");
+//const sdao = require('./dao/sakdao.js');
 var app = express();
 
 var bodyParser = require("body-parser");
+var apiRoutes = express.Router();
 app.use(bodyParser.json()); // for å tolke JSON
 var mysql = require("mysql");
+
 var pool = mysql.createPool({
     connectionLimit: 2,
     host: "mysql.stud.iie.ntnu.no",
@@ -12,6 +18,9 @@ var pool = mysql.createPool({
     database: "haavasma",
     debug: false
 });
+
+bdao = new BrukerDao(pool);
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
@@ -346,6 +355,33 @@ app.get("/api/rating/:sak_id", (req, res) => {
         }
     });
 });
+
+app.post("/api/bruker", (req, res) => {
+    console.log("Fikk POST-request fra klienten");
+    bdao.addBruker(req.body, (status, data) => {
+      res.status(status);
+      res.json(data);
+    });
+  });
+app.post("/api/login",(req,res)=>{
+    console.log("Fikk POST-request fra klienten");
+    bdao.getBruker(req.body, (status, data)=>{
+        res.status(status);
+        //res.json(data);
+        //res.json(data);
+        console.log(data[0].passord);
+        bcrypt.compare(req.body.passord, data[0].passord, function(err, resp) {
+            if(resp) {
+                console.log("password matched");
+                res.json(data);
+            } else {
+                console.log("password didnt match");
+                res.json({error: "not authorized" });
+            } 
+          });
+    })
+});
+  
 
 
 

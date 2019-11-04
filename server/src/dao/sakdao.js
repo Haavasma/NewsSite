@@ -1,4 +1,4 @@
-const dao  = require('./dao.js');
+const Dao  = require('./dao.js');
 
 module.exports = class SakDao extends Dao {
     getNyheter(callback){
