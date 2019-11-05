@@ -1,6 +1,7 @@
 var express = require("express");
 const bcrypt = require('bcrypt');
 const BrukerDao = require('./dao/brukerdao.js');
+var fs = require('fs');
 var jwt = require("jsonwebtoken");
 //const sdao = require('./dao/sakdao.js');
 var app = express();
@@ -372,10 +373,17 @@ app.post("/api/login",(req,res)=>{
         console.log(data[0].passord);
         bcrypt.compare(req.body.passord, data[0].passord, function(err, resp) {
             if(resp) {
+                /*let token = jwt.sign({brukernavn: req.body.brukernavn}, privateKEY,{
+                    expiresIn: 30
+                });
                 console.log("password matched");
-                res.json(data);
+                res.json({jwt: token});
+                */
+               console.log("password matched");
+               res.json(data);
             } else {
                 console.log("password didnt match");
+                res.status(401);
                 res.json({error: "not authorized" });
             } 
           });
