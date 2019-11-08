@@ -5,37 +5,23 @@ import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
+import {LiveFeed} from './../LiveFeed/index';
 import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } from './../../widgets';
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
-import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore, brukerStore} from './../../Stores.js';
+import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './../../Stores.js';
 const history = createHashHistory();
 
-
-function nyTidspunkt() {
-    var currentdate = new Date();
-    var datetime = currentdate.getDate() + "/"
-      + (currentdate.getMonth() + 1) + "/"
-      + currentdate.getFullYear() + " @ "
-      + currentdate.getHours() + ":"
-      + currentdate.getMinutes() + ":"
-      + currentdate.getSeconds();
-  
-    return datetime;
-  }
-
-export class LagArtikkel extends Component {
-    sak: Sak = new Sak();
+export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number } } }>{
     render() {
-      if (kategoriStore.kategorier) {
-        this.sak.kategori = kategoriStore.kategorier[0].kategori;
+      if (sakStore.currentSak.sak_id == this.props.match.params.sak_id) {
         return (
-          <Card title="Lag en artikkel: ">
+          <Card title="Rediger artikkelen: ">
             <form>
               <Row>
                 <Column>
-                  <b><label>Overskrift: (*)</label></b>
+                  <b><label for="overskrift">Overskrift: (*)</label></b>
                 </Column>
               </Row>
               <Row>
@@ -46,7 +32,8 @@ export class LagArtikkel extends Component {
                     placeholder="Skriv inn overskrift her"
                     required
                     class="skalFyllesUt"
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.overskrift = event.target.value)}>
+                    value={sakStore.currentSak.overskrift}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.overskrift = event.target.value)}>
                   </input>
                 </Column>
               </Row>
@@ -64,7 +51,8 @@ export class LagArtikkel extends Component {
                     placeholder="Url til bilde her"
                     required
                     class="skalFyllesUt"
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.bilde = event.target.value)}
+                    value={sakStore.currentSak.bilde}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.bilde = event.target.value)}
                   >
                   </input>
                 </Column>
@@ -77,10 +65,10 @@ export class LagArtikkel extends Component {
               <Row>
                 <Column>
                   <select id="myList"
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.kategori = event.target.value)}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.kategori = event.target.value)}
                   >
                     {kategoriStore.kategorier.map(e => (
-                      <option>{e.kategori}</option>
+                      <option key ={e.kategori}>{e.kategori}</option>
                     ))}
                   </select>
                 </Column>
@@ -94,8 +82,9 @@ export class LagArtikkel extends Component {
                     name="viktighet"
                     type="checkbox"
                     required
-                    checked={this.viktighet}
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.viktighet = event.target.checked)}
+                    value="viktig"
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.viktighet = event.target.checked)}
+                    checked={sakStore.currentSak.viktighet}
                   ></input>
                 </Column>
               </Row>
@@ -114,38 +103,35 @@ export class LagArtikkel extends Component {
                     placeholder="Skriv artikkelens innhold her"
                     required
                     class="skalFyllesUt"
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.innhold = event.target.value)}
+                    value={sakStore.currentSak.innhold}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.innhold = event.target.value)}
                   >
                   </textarea>
                 </Column>
               </Row>
               <Row>
                 <Column>
-                  <Button.Success onClick={this.makeArticle}>Legg til artikkel</Button.Success>
+                  <Button.Success onClick={this.changeArticle}>Rediger artikkel</Button.Success>
                 </Column>
               </Row>
             </form>
           </Card>
         );
-      }
-      else {
-        return <div>laster...</div>
+      }else{
+        return <div>Laster...</div>
       }
     }
-    makeArticle() {
-      if (this.sak.overskrift == "" || this.sak.innhold == "" || this.sak.bilde == "") {
+  
+    changeArticle() {
+      if (sakStore.currentSak.overskrift == "" || sakStore.currentSak.innhold == "" || sakStore.currentSak.bilde == "") {
         Alert.danger("de nødvendige feltene må fylles ut");
         return;
       }
-      this.sak.brukernavn = brukerStore.bruker.brukernavn;
-      this.sak.tidspunkt = nyTidspunkt();
-      sakStore.saker.push(this.sak);
-      sakStore.addSak(this.sak);
-      sakStore.getSaker();
+      sakStore.updateSak().catch((error:Error)=>Alert.danger(error.message));
       history.push("/");
       return;
     }
     mounted() {
-      sakStore.getSaker();
+      sakStore.getSak(this.props.match.params.sak_id).catch((error: Error) => Alert.danger(error.message));
     }
   }

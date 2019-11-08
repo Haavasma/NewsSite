@@ -12,6 +12,7 @@ export class Kommentar{
 
 export class Sak {
     sak_id: number = 0;
+    brukernavn: string = "";
     overskrift: string = "";
     innhold: string= "";
     tidspunkt:string= "";
@@ -22,6 +23,10 @@ export class Sak {
 export class Kategori {
     kategori: string = "";
 }
+export class Bruker {
+    brukernavn: string = "";
+    passord: string  = "";
+}
 
 
 class SakStore {
@@ -31,16 +36,15 @@ class SakStore {
     getSaker(){
         return axios.get<Sak[]>('/api/nyheter').then(response=>(this.saker = response.data));
     }
-    getViktigeSaker(){
-        return axios.get<Sak[]>('/api/viktigeNyheter').then(response=>(this.saker = response.data)).catch((error:Error)=>Alert.danger(error.message));
-    }
     getSak(id: number){
         return axios.get<Sak>('/api/nyheter/'+ id).then(response =>{
             this.currentSak = response.data[0];
             console.log(response.data);
+            /*
             let sak = this.saker.find(sak=>sak.sak_id==this.currentSak.sak_id);
             if(sak) Object.assign(sak, {...this.currentSak});
             else{console.log("couldn't assign currentSak");}
+            */
         });
     }
     updateSak(){
@@ -59,6 +63,7 @@ class SakStore {
     addSak(sak: Sak){
         return axios.post('/api/nyheter', {
             overskrift: sak.overskrift,
+            brukernavn: sak.brukernavn,
             innhold: sak.innhold,
             tidspunkt: sak.tidspunkt,
             bilde: sak.bilde,
@@ -102,11 +107,39 @@ class KategoriStore{
         .then(response=>this.kategorier=response.data);
     }
 }
+
+class BrukerStore{
+    bruker: Bruker;
+
+    getBruker(brukernavn: string){
+        return axios.get<Bruker>('/api/bruker', {
+            brukernavn: brukernavn
+        }).then(response=>{
+            console.log(response);
+        })
+    }
+    logIn(brukernavn: string, passord: string){
+        return axios.post<Bruker>('/api/login', {
+            brukernavn: brukernavn,
+            passord: passord
+        }).then(response=>{
+            console.log(response.data.jwt);
+            if(response.data.jwt){
+                this.bruker = new Bruker();
+                this.bruker.brukernavn = brukernavn;
+                this.bruker.passord = passord;
+                localStorage.token = response.data.jwt;
+            }
+            console.log(response);
+        })
+    }
+}
 export let sakStore = sharedComponentData(new SakStore());
 export let kommentarStore = sharedComponentData(new KommentarStore());
 export let kategoriStore = sharedComponentData(new KategoriStore());
+export let brukerStore = sharedComponentData(new BrukerStore());
+sakStore.getSaker();
 kategoriStore.getKategorier().then(e=>{console.log(kategoriStore.kategorier)});
 kommentarStore.getKommentarer(2).then(e=>{console.log(kommentarStore.kommentarer)});
-sakStore.getViktigeSaker().then(e=>{console.log(sakStore.saker)});
-sakStore.getSak(2).then(e=>console.log(sakStore.currentSak.overskrift));
+//sakStore.getSak(2).then(e=>console.log(sakStore.currentSak.overskrift));
 //console.log(sakStore.saker);

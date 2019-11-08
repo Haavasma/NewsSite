@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 
-const PersonDao = require("./sakdao.js");
+const SakDao = require("./sakdao.js");
 const runsqlfile = require("./runsqlfile.js");
 
 // GitLab CI Pool
