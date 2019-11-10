@@ -52,8 +52,8 @@ app.use(function(req, res, next) {
         }
     })
 }
-);
-*/
+);*/
+
 
 app.get("/api/nyheter", (req, res) => {
     console.log("Fikk request fra klient");
@@ -181,21 +181,26 @@ app.post("/api/login",(req,res)=>{
     console.log("Fikk POST-request fra klienten");
     bdao.getBruker(req.body, (status, data)=>{
         res.status(status);
-        console.log(data[0].passord);
-        bcrypt.compare(req.body.passord, data[0].passord, function(err, resp) {
-            if(resp) {
-                let token = jwt.sign({brukernavn: req.body.brukernavn}, privateKEY.key,{
-                    expiresIn: 600
-                });
-                console.log("password matched");
-                res.json({jwt: token});
-            } else {
-                console.log("password didnt match");
-                res.status(401);
-                res.json({error: "not authorized" });
-            } 
-          });
-    })
+        if(data[0]){
+            bcrypt.compare(req.body.passord, data[0].passord, function(err, resp) {
+                if(resp) {
+                    let token = jwt.sign({brukernavn: req.body.brukernavn}, privateKEY.key,{
+                        expiresIn: 600
+                    });
+                    console.log("password matched");
+                    res.status(status);
+                    res.json({jwt: token});
+                } else {
+                    console.log("password didnt match");
+                    res.status(401);
+                    res.json({error: "not authorized" });
+                } 
+              });
+        }else{
+            res.status(401);
+            res.json({error: "user does not exist"});
+        }
+        });
 });
   
 

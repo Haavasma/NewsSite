@@ -18,9 +18,6 @@ import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './Stores';
 const history = createHashHistory();
 
-var categories: kategori[] = [];
-kategoriStore.getKategorier().then(e => { categories = kategoriStore.kategorier });
-
 
 const root = document.getElementById('root');
 

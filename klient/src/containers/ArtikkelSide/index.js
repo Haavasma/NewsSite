@@ -18,6 +18,9 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
   tempKommentar: string = "";
   tempBrukerNavn: string = "";
   render() {
+    if(brukerStore.bruker){
+      //this.tempBrukerNavn = brukerStore.bruker.brukernavn;
+    }
     if (sakStore.currentSak.sak_id == this.props.match.params.sak_id && kommentarStore.kommentarer) {
       if (brukerStore.bruker) {
         if (brukerStore.bruker.brukernavn == sakStore.currentSak.brukernavn) {

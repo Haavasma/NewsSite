@@ -133,6 +133,14 @@ class BrukerStore{
             console.log(response);
         })
     }
+    addBruker(brukernavn: string, passord: string){
+        return axios.post<Bruker>('/api/bruker',{
+            brukernavn:brukernavn,
+            passord:passord
+        }).then(response=>{
+            console.log(response);
+        }) 
+    }
 }
 export let sakStore = sharedComponentData(new SakStore());
 export let kommentarStore = sharedComponentData(new KommentarStore());

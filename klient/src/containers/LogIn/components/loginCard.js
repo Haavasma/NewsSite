@@ -2,26 +2,50 @@
 /* eslint eqeqeq: "off" */
 
 import * as React from 'react';
-import { Component } from 'react-simplified';
-import { NavLink } from 'react-router-dom';
-import {Card} from './../../../widgets';
+import { Component } from "react-simplified";
+import { Bruker, brukerStore, Sak } from "../../../Stores";
+import { Button, Card, Alert } from '../../../widgets';
+import { createHashHistory } from 'history';
+var history = createHashHistory();
 
-export class LoginCard extends Component<{ brukernavn: React.Node, passord: React.Node, width: Number }> {
-  render() {
-    return (
-      <Card width = "40%">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">{this.props.brukernavn}</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Skriv inn brukernavn" />
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">{this.props.passord}</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      </Card>
-    );
-  }
-}
+export class LoginCard extends Component<{ children?: React.Node, bruker: Bruker }> {
+    render() {
+        return (
+            <Card width="50%">
+                <form>
+                    <FormGroup
+                        text="Brukernavn: "
+                        type="text"
+                        placeholder="Brukernavn"
+                        value={this.props.bruker.brukernavn}
+                        onChange={(event: SyntheticInputEvent<HTMLInputElement>) => {this.props.bruker.brukernavn = event.target.value}}
+                    />
+                     <FormGroup
+                        text="Passord: "
+                        type="password"
+                        placeholder="Passord"
+                        value={this.props.bruker.passord}
+                        onChange={(event: SyntheticInputEvent<HTMLInputElement>) => {this.props.bruker.passord = event.target.value}}
+                        bruker = {this.props.bruker}
+                    />
+                    {this.props.children}
+                </form>
+            </Card>
+        )
+    }
+};
+export class FormGroup extends Component<{ text: string, type: string, value: string, onChange: ()=>mixed, placeholder: string }>{
+    render() {
+        return (
+            <div className="form-group">
+                <label><b>{this.props.text}</b></label>
+                <input
+                    type={this.props.type}
+                    className="form-control"
+                    placeholder={this.props.placeholder}
+                    onChange={this.props.onChange}
+                />
+            </div>
+        );
+    }
+};

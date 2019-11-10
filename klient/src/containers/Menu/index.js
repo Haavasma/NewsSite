@@ -22,7 +22,7 @@ export class Menu extends Component {
           ))}
           <NavBar.Link to={"/bruker/"+brukerStore.bruker.brukernavn}><b>Mine Artikler</b></NavBar.Link>
           <NavLink to="/RegistreringsSide"><Button.Success>Legg til artikkel</Button.Success></NavLink>
-          <NavLink to="/login"><Button.Danger>Logg ut</Button.Danger></NavLink>
+          <Button.Danger onClick={this.loggUt}>Logg ut</Button.Danger>
         </NavBar>
         )
       }else{
@@ -32,7 +32,7 @@ export class Menu extends Component {
             {kategoriStore.kategorier.map(e => (
               <NavBar.Link key={e.kategori} to={"/kategori/" + e.kategori}>{e.kategori}</NavBar.Link>
             ))}
-            <NavLink to="/login"><Button.Success>Logg inn</Button.Success></NavLink>
+            <NavLink to="/login"><Button.Success>Logg inn/Registrer</Button.Success></NavLink>
           </NavBar>
   
         );
@@ -40,6 +40,11 @@ export class Menu extends Component {
     } else {
       return <div></div>
     }
+  }
+  
+  loggUt(){
+    Alert.success("Du ble logget ut");
+    brukerStore.bruker = null;
   }
   mounted() {
     kategoriStore.getKategorier();

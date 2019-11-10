@@ -146,6 +146,7 @@ export class LagArtikkel extends Component {
       return;
     }
     mounted() {
+      kategoriStore.getKategorier();
       sakStore.getSaker();
     }
   }
