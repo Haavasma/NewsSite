@@ -1,3 +1,5 @@
+//@flow
+
 var express = require("express");
 const bcrypt = require('bcrypt');
 const BrukerDao = require('./dao/brukerdao.js');
@@ -27,33 +29,17 @@ var pool = mysql.createPool({
     debug: false
 });
 
-bdao = new BrukerDao(pool);
-sakdao = new SakDao(pool);
-kategoridao = new KategoriDao(pool);
-kommentardao = new KommentarDao(pool);
-ratingdao = new RatingDao(pool);
+var bdao: BrukerDao = new BrukerDao(pool);
+var sakdao: SakDao = new SakDao(pool);
+var kategoridao: KategoriDao = new KategoriDao(pool);
+var kommentardao: KommentarDao = new KommentarDao(pool);
+var ratingdao : RatingDao= new RatingDao(pool);
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-/*app.use("/api", (req,res, next)=>{
-    var token = req.headers["x-access-token"];
-    jwt.verify(token, publicKEY.key, (err,decoded)=>{
-        if(err) {
-            console.log("Token IKKE ok");
-            res.status(401);
-            res.json({ error: "Not authorized"});
-        }else{
-            console.log("Token ok: "+ decoded.brukernavn);
-            token = jwt.sign
-            next();
-        }
-    })
-}
-);*/
-
 
 app.get("/api/nyheter", (req, res) => {
     console.log("Fikk request fra klient");

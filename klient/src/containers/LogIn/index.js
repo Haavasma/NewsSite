@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Component } from "react-simplified";
 import { Bruker, brukerStore, Sak } from "./../../Stores";
 import { Button, Card, Alert, Column, Row } from '../../widgets';
-import {LoginCard, FormGroup} from './components/LoginCard';
+import {LoginCard, FormGroup} from './components/loginCard';
 import { createHashHistory } from 'history';
 var history = createHashHistory();
 

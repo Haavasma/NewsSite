@@ -28,8 +28,6 @@ afterAll(() => {
 
 test("get one Sak from db", done =>{
     function callback(status, data){
-        console.log(status, data){
-            ""
-        }
+        console.log(status, data);
     }
 })

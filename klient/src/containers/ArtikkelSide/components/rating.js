@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { ratingStore, Rating, brukerStore } from './../../../Stores'
 import { Row, Column } from "../../../widgets";
-import { FormGroup } from "../../LogIn/components/LoginCard";
+//import { FormGroup } from "../../LogIn/components/LoginCard";
 
 
 export class Ratingcomponent extends Component<{sak_id: number}>{

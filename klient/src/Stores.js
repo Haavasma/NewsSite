@@ -12,7 +12,7 @@ export class Kommentar{
 
 export class Rating{
     rating_id: number = 0;
-    rating; number = 0;
+    rating: number = 0;
     sak_id: number = 0;
     brukernavn: string = "";
 }

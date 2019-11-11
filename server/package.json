@@ -4,7 +4,10 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
     "start-prod": "cross-env NODE_ENV=production babel-node src/server.js",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "build": "babel src/ -d lib/",
+    "prepublish": "npm run build",
+    "flow": "flow"
   },
   "jest": {
     "testRegex": "./tests/.+Test\\.js$",
@@ -12,6 +15,7 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "flow": "0.2.3",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
@@ -21,13 +25,15 @@
     "sequelize": "^5.21.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
     "@babel/node": "^7.6.3",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-flow": "^7.0.0",
     "babel-jest": "^24.9.0",
     "cross-env": "^6.0.3",
+    "flow-bin": "^0.111.3",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
     "reload": "^3.0.2"
