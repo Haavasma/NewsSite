@@ -127,8 +127,7 @@ export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number 
         Alert.danger("de nødvendige feltene må fylles ut");
         return;
       }
-      sakStore.updateSak().catch((error:Error)=>Alert.danger(error.message));
-      history.push("/");
+      sakStore.updateSak(localStorage.token).then(e=>{history.push("/")}).catch((error:Error)=>Alert.danger("Ikke din artikkel"));
       return;
     }
     mounted() {

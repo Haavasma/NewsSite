@@ -7,6 +7,9 @@ module.exports = class SakDao extends Dao {
     getNyhet(id, callback){
         super.query("select sak_id, brukernavn, overskrift, innhold, tidspunkt, bilde, kategori, viktighet from sak where sak_id = ?",[id], callback);
     }
+    getBrukernavnAvSak_id(id, callback){
+        super.query("select brukernavn from sak WHERE sak_id = ?", [id], callback);
+    }
     lagNyhet(json, callback){
         var val = [json.brukernavn, json.overskrift, json.innhold, json.tidspunkt, json.bilde, json.kategori, json.viktighet];
         super.query("insert into sak(sak_id, brukernavn, overskrift, innhold, tidspunkt, bilde, kategori, viktighet) values (DEFAULT, ?, ?, ?, ?, ?, ?, ?)",

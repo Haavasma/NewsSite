@@ -10,6 +10,13 @@ export class Kommentar{
     sak_id: number = 0;
 }
 
+export class Rating{
+    rating_id: number = 0;
+    rating; number = 0;
+    sak_id: number = 0;
+    brukernavn: string = "";
+}
+
 export class Sak {
     sak_id: number = 0;
     brukernavn: string = "";
@@ -40,22 +47,24 @@ class SakStore {
         return axios.get<Sak>('/api/nyheter/'+ id).then(response =>{
             this.currentSak = response.data[0];
             console.log(response.data);
-            /*
-            let sak = this.saker.find(sak=>sak.sak_id==this.currentSak.sak_id);
-            if(sak) Object.assign(sak, {...this.currentSak});
-            else{console.log("couldn't assign currentSak");}
-            */
         });
     }
-    updateSak(){
-        return axios.put('/api/nyheter/'+this.currentSak.sak_id, {
+    updateSak(token: String){
+        return axios({method: 'put', url: '/api/nyheter/'+this.currentSak.sak_id, 
+            headers:{
+                'x-access-token': localStorage.token
+            },
+            data: {
             overskrift: this.currentSak.overskrift,
             innhold: this.currentSak.innhold,
             tidspunkt: this.currentSak.tidspunkt,
             bilde: this.currentSak.bilde,
             kategori: this.currentSak.kategori,
             viktighet: this.currentSak.viktighet
-        }).then(()=>{
+        }}).then(response=>{
+            if(response.data.jwt){
+                localStorage.token = response.data.jwt;
+            }
             let sak = this.saker.find(sak=>sak.sak_id==this.currentSak.sak_id);
             if(sak)Object.assign(sak, {...this.currentSak });
         });
@@ -76,11 +85,30 @@ class SakStore {
     deleteSak(id: number){
         console.log("fra deleteSak, axios");
         console.log(id);
-        return axios.delete('/api/nyheter/',{data: {
+
+        return axios({method: 'delete', url: '/api/nyheter/',
+    headers:{
+        'x-access-token': localStorage.token
+    }, data: {
+        "sak_id": id,
+    }}).then(response=>{
+        if(response.data.jwt){
+            localStorage.token = response.data.jwt;
+        }
+    })
+
+        /*return axios.delete('/api/nyheter/', headers: {
+            "x-access-token": localStorage.token
+        },
+        {data: {
             "sak_id": id,
         }}).then(response=>{
+            if(response.data.jwt){
+                localStorage.token = response.data.jwt;
+            }
             console.log(response);
-        })
+        })*/
+
     }
 }
 class KommentarStore{
@@ -111,6 +139,26 @@ class KategoriStore{
 class BrukerStore{
     bruker: Bruker;
 
+    autoLogin(){
+        if(localStorage.token){
+            console.log("token from store: "+ localStorage.token);
+            return axios<Bruker>({
+                method: 'post',
+                url: '/token',
+                headers: {
+                    "x-access-token": localStorage.token
+                }
+              })
+                .then(response=> {
+                    if(response.data.jwt){
+                    this.bruker = new Bruker();
+                    this.bruker.brukernavn = response.data.brukernavn;
+                    localStorage.token = response.data.jwt;
+                    }
+                    console.log(response);
+              });
+        }    
+    }
     getBruker(brukernavn: string){
         return axios.get<Bruker>('/api/bruker', {
             brukernavn: brukernavn
@@ -123,12 +171,12 @@ class BrukerStore{
             brukernavn: brukernavn,
             passord: passord
         }).then(response=>{
-            console.log(response.data.jwt);
             if(response.data.jwt){
                 this.bruker = new Bruker();
                 this.bruker.brukernavn = brukernavn;
                 this.bruker.passord = passord;
                 localStorage.token = response.data.jwt;
+                console.log("token: "+ localStorage.token);
             }
             console.log(response);
         })
@@ -142,6 +190,18 @@ class BrukerStore{
         }) 
     }
 }
+
+class RatingStore{
+    ratings: Rating[];
+    currentRating: number;
+
+    getRating(sak_id: number){
+        return axios.get<Rating>('/api/rating/'+sak_id)
+        .then(response=>this.currentRating = response.data[0]);
+    }
+};
+
+export let ratingStore = sharedComponentData(new RatingStore());
 export let sakStore = sharedComponentData(new SakStore());
 export let kommentarStore = sharedComponentData(new KommentarStore());
 export let kategoriStore = sharedComponentData(new KategoriStore());

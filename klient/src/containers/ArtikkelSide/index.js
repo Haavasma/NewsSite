@@ -10,7 +10,8 @@ import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } fr
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
-import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore, brukerStore } from './../../Stores.js';
+import {Ratingcomponent} from './components/rating';
+import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore, brukerStore, Rating, ratingStore} from './../../Stores.js';
 const history = createHashHistory();
 
 export class ArtikkelSide extends Component<{ match: { params: { sak_id: number } } }> {
@@ -18,9 +19,6 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
   tempKommentar: string = "";
   tempBrukerNavn: string = "";
   render() {
-    if(brukerStore.bruker){
-      //this.tempBrukerNavn = brukerStore.bruker.brukernavn;
-    }
     if (sakStore.currentSak.sak_id == this.props.match.params.sak_id && kommentarStore.kommentarer) {
       if (brukerStore.bruker) {
         if (brukerStore.bruker.brukernavn == sakStore.currentSak.brukernavn) {
@@ -42,12 +40,12 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Card>
                 <Row>
                   <Column>
-                    <b><label>Kallenavn</label></b>
+                    <b><label>Kallenavn: </label></b>
                   </Column>
                 </Row>
                 <Row>
                   <Column>
-                    <textarea rows="1" placeholder="Skriv kallenavn her" value={this.tempBrukerNavn} id="nickFelt" type="text" onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.tempBrukerNavn = event.target.value)}></textarea>
+                    <textarea rows="1" placeholder="Skriv kallenavn her" value={brukerStore.bruker.brukernavn} id="nickFelt" type="text" onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.tempBrukerNavn = event.target.value)}></textarea>
                   </Column>
                 </Row>
                 <Row>
@@ -79,6 +77,50 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
             </div>
           );
         }
+        return (
+            <div>
+              <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
+                {sakStore.currentSak.innhold}
+              </Card>
+              <Card>
+                <Row>
+                  <Column>
+                    <b><label>Kallenavn: </label></b>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <textarea rows="1" placeholder="Skriv kallenavn her" value={brukerStore.bruker.brukernavn} id="nickFelt" type="text" onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.tempBrukerNavn = event.target.value)}></textarea>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <b><label>Kommentar</label></b>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <textarea placeholder="Skriv kommentar her" value={this.tempKommentar} id="kommentarFelt" type="text" onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.tempKommentar = event.target.value)}></textarea>
+                  </Column>
+                </Row>
+                <Row>
+                  <Column>
+                    <Button.Success onClick={this.comment}>Kommenter</Button.Success>
+                  </Column>
+                </Row>
+              </Card>
+              <Card title="Kommentarer">
+                <ListGroup>
+                  {kommentarStore.kommentarer.map(e => (
+                    <ListGroupItem key={e.kommentar}>
+                      <h4>{e.brukernavn}</h4>
+                      {e.kommentar}
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+              </Card>
+            </div>
+          );
       }
       return (
         <div>
@@ -130,11 +172,14 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
   }
   comment() {
     this.kommentar.sak_id = this.props.match.params.sak_id;
-    if (this.tempBrukerNavn == "") {
+    if(brukerStore.bruker && this.tempBrukerNavn==""){
+      this.kommentar.brukernavn = brukerStore.bruker.brukernavn;
+    }else if (this.tempBrukerNavn == "") {
       this.tempBrukerNavn = "Anonyme Arne";
+    }else{
+      this.kommentar.brukernavn = this.tempBrukerNavn;
     }
     this.kommentar.kommentar = this.tempKommentar;
-    this.kommentar.brukernavn = this.tempBrukerNavn;
     this.tempBrukerNavn = "";
     this.tempKommentar = "";
     kommentarStore.kommentarer.push(this.kommentar);

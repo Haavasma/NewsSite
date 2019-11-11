@@ -15,7 +15,7 @@ import {Bruker} from './containers/Bruker/index';
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
-import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './Stores';
+import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore , brukerStore} from './Stores';
 const history = createHashHistory();
 
 
@@ -37,3 +37,4 @@ if (root) ReactDOM.render(
   </HashRouter>,
   root
 );
+brukerStore.autoLogin();

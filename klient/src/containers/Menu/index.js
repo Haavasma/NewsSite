@@ -45,8 +45,10 @@ export class Menu extends Component {
   loggUt(){
     Alert.success("Du ble logget ut");
     brukerStore.bruker = null;
+    localStorage.token = null;
   }
   mounted() {
     kategoriStore.getKategorier();
+    brukerStore.autoLogin();
   }
 }

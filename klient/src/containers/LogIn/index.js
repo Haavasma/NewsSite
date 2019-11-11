@@ -58,8 +58,4 @@ export class Login extends Component{
         Alert.danger("Passord er ulike");
       }
     }
-
-    mounted(){
-
-    }
 }
