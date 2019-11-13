@@ -45,6 +45,7 @@ class SakStore {
     }
     getSak(id: number){
         return axios.get<Sak>('/api/nyheter/'+ id).then(response =>{
+
             this.currentSak = response.data[0];
             console.log(response.data);
         });
@@ -192,12 +193,22 @@ class BrukerStore{
 }
 
 class RatingStore{
-    ratings: Rating[];
     currentRating: number;
 
     getRating(sak_id: number){
         return axios.get<Rating>('/api/rating/'+sak_id)
-        .then(response=>this.currentRating = response.data[0]);
+        .then(response=>{
+            this.currentRating = response.data[0].avgRating;
+            console.log(response);
+        });
+    }
+    addRating(rating: Rating){
+        return axios.post('/api/rating/' + rating.sak_id, {
+            brukernavn: rating.brukernavn,
+            rating: rating.rating
+        }).then(response=>{
+            console.log(response);
+        })
     }
 };
 

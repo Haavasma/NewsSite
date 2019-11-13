@@ -71,12 +71,24 @@ class NavBarLink extends Component<{ exact?: boolean, to: string, children?: Rea
     );
   }
 }
+class NavBarRight extends Component<{ exact?: boolean, to: string, children?: React.Node }>{
+  render(){
+    return(
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        {this.props.children}
+      </ul>
+  </div>
+    );
+  }
+}
 
 /**
  * Renders a navigation bar using Bootstrap classes
  */
 export class NavBar extends Component<{ brand?: React.Node, children?: React.Node }> {
   static Link = NavBarLink;
+  static Right = NavBarRight;
 
   render() {
     return (
@@ -183,6 +195,18 @@ class ButtonPrimary extends Component<{
     )
   }
 }
+class ButtonSecondary extends Component<{
+  onClick: () => mixed, 
+  children?: React.Node
+}>{
+  render(){
+    return (
+      <button type = "button" className="btn btn-secondary" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    )
+  }
+}
 
 /**
  * Renders a button using Bootstrap classes
@@ -191,4 +215,5 @@ export class Button {
   static Danger = ButtonDanger;
   static Success = ButtonSuccess;
   static Primary = ButtonPrimary;
+  static Secondary = ButtonSecondary;
 }

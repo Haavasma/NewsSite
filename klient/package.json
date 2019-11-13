@@ -1,5 +1,5 @@
 {
-  "name": "newsProject",
+  "name": "react-state",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "node ./scripts/enable_babelrc.js",

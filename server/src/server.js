@@ -57,35 +57,6 @@ app.get("/api/nyheter/:sak_id", (req, res) => {
     });
 });
 
-
-/*
-app.get("/api/kategori/:kategori",(req, res) => {
-    console.log("Fikk request fra klient");
-    pool.getConnection((err, connection) => {
-        console.log("Connected to database");
-        if (err) {
-            console.log("Feil ved kobling til databasen");
-            res.json({ error: "feil ved ved oppkobling" });
-        } else {
-            connection.query(
-                "select sak_id, overskrift, innhold, tidspunkt, bilde, kategori, viktighet from sak WHERE kategori=?"
-                ,req.params.kategori,
-                (err, rows) => {
-                    connection.release();
-                    if (err) {
-                        console.log(err);
-                        res.json({ error: "error querying" });
-                    } else {
-                        console.log(rows);
-                        res.json(rows);
-                    }
-                }
-            );
-        }
-    });
-});
-*/
-
 app.post("/api/nyheter", (req, res) => {
     console.log("Fikk POST-request fra klienten");
     console.log("Navn: " + req.body.navn);
@@ -96,7 +67,6 @@ app.post("/api/nyheter", (req, res) => {
 });
 
 app.delete("/api/nyheter/", (req, res) => {
-    //console.log("Fikk DELETE-request fra klienten");
     var token = req.headers["x-access-token"];
     jwt.verify(token, privateKEY.key, (err, decoded)=>{
         if(err){

@@ -37,6 +37,8 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
                 {sakStore.currentSak.innhold}
               </Card>
+              <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
+              </Ratingcomponent>
               <Card>
                 <Row>
                   <Column>
@@ -82,6 +84,9 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
                 {sakStore.currentSak.innhold}
               </Card>
+              <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
+
+              </Ratingcomponent>
               <Card>
                 <Row>
                   <Column>
@@ -126,7 +131,10 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
         <div>
           <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
             {sakStore.currentSak.innhold}
+          
           </Card>
+          <Ratingcomponent sak_id={this.props.match.params.sak_id}>
+          </Ratingcomponent>
           <Card>
             <Row>
               <Column>

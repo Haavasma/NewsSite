@@ -6,7 +6,7 @@ module.exports = class KommentarDao extends Dao {
     }
     addRating(json, id, callback){
         var val = [json.rating, id, json.brukernavn];
-        super.query("insert into rating(rating_id, rating, sak_id, brukernavn) values (DEFAULT, ?, ?, ?)"
+        super.query("insert into rating(rating, sak_id, brukernavn) values (?, ?, ?)"
         ,val,
         callback);
     }
