@@ -74,11 +74,10 @@ class NavBarLink extends Component<{ exact?: boolean, to: string, children?: Rea
 class NavBarRight extends Component<{ exact?: boolean, to: string, children?: React.Node }>{
   render(){
     return(
-      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
-        {this.props.children}
-      </ul>
-  </div>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
     );
   }
 }

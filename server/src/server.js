@@ -20,7 +20,7 @@ var apiRoutes = express.Router();
 app.use(bodyParser.json()); // for å tolke JSON
 var mysql = require("mysql");
 
-var pool = mysql.createPool({
+var pool: pool = mysql.createPool({
     connectionLimit: 2,
     host: "mysql.stud.iie.ntnu.no",
     user: "haavasma",
@@ -35,7 +35,7 @@ var kategoridao: KategoriDao = new KategoriDao(pool);
 var kommentardao: KommentarDao = new KommentarDao(pool);
 var ratingdao : RatingDao= new RatingDao(pool);
 
-app.use(function (req, res, next) {
+app.use(function (req, res, next: function) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -67,7 +67,7 @@ app.post("/api/nyheter", (req, res) => {
 });
 
 app.delete("/api/nyheter/", (req, res) => {
-    var token = req.headers["x-access-token"];
+    var token: string = req.headers["x-access-token"];
     jwt.verify(token, privateKEY.key, (err, decoded)=>{
         if(err){
             res.status(401);
@@ -77,7 +77,7 @@ app.delete("/api/nyheter/", (req, res) => {
                 if(data[0].brukernavn == decoded.brukernavn){
                     sakdao.deleteNyhet(req.body, (status, data)=>{
                         res.status(status);
-                        let token = jwt.sign({ brukernavn: decoded.brukernavn }, privateKEY.key, {
+                        let token: string = jwt.sign({ brukernavn: decoded.brukernavn }, privateKEY.key, {
                             expiresIn: 6000
                         });
                         res.json({jwt:token});
@@ -92,7 +92,7 @@ app.delete("/api/nyheter/", (req, res) => {
 });
 
 app.put("/api/nyheter/:sak_id", (req, res) => {
-    var token = req.headers["x-access-token"];
+    var token:string = req.headers["x-access-token"];
     console.log("token: "+ token);
     jwt.verify(token, privateKEY.key, (err, decoded) => {
         if (err) {
@@ -177,7 +177,7 @@ app.post("/api/login", (req, res) => {
         if (data[0]) {
             bcrypt.compare(req.body.passord, data[0].passord, function (err, resp) {
                 if (resp) {
-                    let token = jwt.sign({ brukernavn: req.body.brukernavn }, privateKEY.key, {
+                    let token: string = jwt.sign({ brukernavn: req.body.brukernavn }, privateKEY.key, {
                         expiresIn: 600
                     });
                     console.log("password matched");
@@ -197,7 +197,7 @@ app.post("/api/login", (req, res) => {
 });
 
 app.post("/token", (req, res)=>{
-    var token = req.headers["x-access-token"];
+    let token: string = req.headers["x-access-token"];
     console.log("token: "+ token )
     jwt.verify(token, privateKEY.key, (err, decoded)=>{
       if(err){

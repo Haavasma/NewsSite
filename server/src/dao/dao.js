@@ -1,10 +1,10 @@
 module.exports = class Dao {
-    constructor(pool) {
+    constructor(pool: connection) {
       // Dependency Injection
       this.pool = pool;
     }
   
-    query(sql, params, callback) {
+    query(sql: string, params: string[], callback: function) {
       this.pool.getConnection((err, connection) => {
         console.log("dao: connected to database");
         if (err) {

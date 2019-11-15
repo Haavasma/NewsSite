@@ -4,7 +4,7 @@ const SakDao = require("./sakdao.js");
 const runsqlfile = require("./runsqlfile.js");
 
 // GitLab CI Pool
-var pool = mysql.createPool({
+var pool: connection = mysql.createPool({
   connectionLimit: 1,
   host: "mysql",
   user: "root",
@@ -14,7 +14,7 @@ var pool = mysql.createPool({
   multipleStatements: true
 });
 
-let sakDao = new SakDao(pool);
+let sakDao: SakDao = new SakDao(pool);
 
 beforeAll(done => {
   runsqlfile("dao/create_tables.sql", pool, () => {
