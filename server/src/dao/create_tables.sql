@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS sak;
 DROP TABLE IF EXISTS kommentar;
 DROP TABLE IF EXISTS kategori;
 DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS bruker;
 
 CREATE TABLE `bruker` (
  `brukernavn` varchar(255) NOT NULL,
