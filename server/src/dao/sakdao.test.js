@@ -34,7 +34,7 @@ test("get one Sak from db", done => {
     expect(data[0].brukernavn).toBe("Zanacion");
     done();
   }
-  sakDao.getNyhet(3, callback);
+  sakDao.getNyhet(1, callback);
 });
 
 test("get every Sak from db", done => {
