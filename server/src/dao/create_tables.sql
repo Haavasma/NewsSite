@@ -41,7 +41,7 @@ CREATE TABLE `kommentar` (
  `sak_id` int(11) DEFAULT NULL,
  PRIMARY KEY (`kommentar_id`),
  KEY `sak_id` (`sak_id`),
- CONSTRAINT `kommentar_ibfk_1` FOREIGN KEY (`sak_id`) REFERENCES `sak` (`sak_id`) ON DELETE CASCADE
+ CONSTRAINT `kommentar_ibfk_1` FOREIGN KEY (`sak_id`) REFERENCES `sak` (`sak_id`) ON DELETE CASCADE, ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 
 
