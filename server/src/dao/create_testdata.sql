@@ -17,4 +17,3 @@ INSERT INTO kommentar values(DEFAULT, "bra aritkkel", "harald", 1);
 INSERT INTO kommentar values(DEFAULT, "dårlig aritkkel", "harald", 1);
 
 INSERT INTO rating values(3, 1, "Zanacion");
-INSERT INTO rating values(DEFAULT, 2, 1);
