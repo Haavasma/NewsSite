@@ -12,7 +12,6 @@ const privateKEY = require('./keys/private.json');
 const publicKEY = require('./keys/public.json');
 const path = ('path');
 var jwt = require("jsonwebtoken");
-//const sdao = require('./dao/sakdao.js');
 var app = express();
 
 var bodyParser = require("body-parser");
@@ -34,6 +33,15 @@ var sakdao: SakDao = new SakDao(pool);
 var kategoridao: KategoriDao = new KategoriDao(pool);
 var kommentardao: KommentarDao = new KommentarDao(pool);
 var ratingdao : RatingDao= new RatingDao(pool);
+
+app.on('livefeed', (req, socket: WebSocket)=>{
+    if(req.headers['livefeed']!=='websocket'){
+        socket.close(101, "bad request");
+        return;
+    }else{
+        socket.send("nice");
+    }
+});
 
 app.use(function (req, res, next: function) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
@@ -78,7 +86,7 @@ app.delete("/api/nyheter/", (req, res) => {
                     sakdao.deleteNyhet(req.body, (status, data)=>{
                         res.status(status);
                         let token: string = jwt.sign({ brukernavn: decoded.brukernavn }, privateKEY.key, {
-                            expiresIn: 6000
+                            expiresIn: 2000
                         });
                         res.json({jwt:token});
                     })
@@ -107,7 +115,7 @@ app.put("/api/nyheter/:sak_id", (req, res) => {
                     sakdao.oppdaterNyhet(req.body, req.params.sak_id,(status, data)=>{
                         res.status(status);
                         let token = jwt.sign({ brukernavn: decoded.brukernavn }, privateKEY.key, {
-                            expiresIn: 6000
+                            expiresIn: 2000
                         });
                         res.json({ jwt: token });
                     })
@@ -178,7 +186,7 @@ app.post("/api/login", (req, res) => {
             bcrypt.compare(req.body.passord, data[0].passord, function (err, resp) {
                 if (resp) {
                     let token: string = jwt.sign({ brukernavn: req.body.brukernavn }, privateKEY.key, {
-                        expiresIn: 600
+                        expiresIn: 2000
                     });
                     console.log("password matched");
                     res.status(status);
@@ -208,7 +216,7 @@ app.post("/token", (req, res)=>{
         console.log("Token ok: " + decoded.brukernavn);
         console.log("token refreshed");
         token = jwt.sign({brukernavn: decoded.brukernavn}, privateKEY.key, {
-          expiresIn:6000
+          expiresIn:6
         });
         res.json({jwt: token, "brukernavn": decoded.brukernavn});
       }

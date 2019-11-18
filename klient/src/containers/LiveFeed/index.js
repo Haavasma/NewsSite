@@ -10,6 +10,7 @@ import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './../../Stores.js';
 
+
 export class LiveFeed extends Component {
     render() {
       if (sakStore.saker) {

@@ -3,6 +3,12 @@ import { sharedComponentData } from 'react-simplified';
 import axios from 'axios';
 import { Alert } from './widgets';
 
+var socket  = new WebSocket("ws:localhost:4000", "livefeed");
+
+socket.onmessage = e=>{
+  console.log(e.data);
+}
+
 export class Kommentar{
     id: number = 0;
     kommentar: string = "";
@@ -157,7 +163,7 @@ class BrukerStore{
                     localStorage.token = response.data.jwt;
                     }
                     console.log(response);
-              });
+              }).catch(error=> this.bruker = null);
         }    
     }
     getBruker(brukernavn: string){

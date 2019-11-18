@@ -11,6 +11,7 @@ import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore, brukerStore } from './../../Stores.js';
 
+
 export class Menu extends Component {
   render() {
     if (kategoriStore.kategorier) {

@@ -29,5 +29,9 @@ afterAll(() => {
 test("get one Sak from db", done =>{
     function callback(status, data){
         console.log(status, data);
+        expect(data.length).toBe(1);
+        expect(data[0].brukernavn).toBe("Zanacion");
+        done();
     }
-})
+    sakDao.getNyhet(1, callback);
+});
