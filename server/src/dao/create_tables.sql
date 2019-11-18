@@ -30,7 +30,7 @@ CREATE TABLE `sak` (
  PRIMARY KEY (`sak_id`),
  KEY `kategori` (`kategori`),
  KEY `brukernavn` (`brukernavn`),
- CONSTRAINT `sak_ibfk_1` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kategori`),
+ CONSTRAINT `sak_ibfk_1` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
  CONSTRAINT `sak_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
