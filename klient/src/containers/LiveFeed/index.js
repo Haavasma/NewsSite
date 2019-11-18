@@ -20,7 +20,6 @@ export class LiveFeed extends Component {
     let socket = socketIOClient(this.socketURL);
     socket.on("livefeed", saker => {
       this.saker = saker;
-      console.log("updating saker in livefeed: " + saker[0].overskrift);
     });
   }
   render() {
