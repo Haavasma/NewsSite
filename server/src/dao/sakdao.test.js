@@ -41,9 +41,9 @@ test("get every Sak from db", done => {
   function callback(status, data) {
     console.log(status, data);
     expect(data.length).toBe(2);
-    expect(data[0].brukernavn).toBe("Zanacion");
-    expect(data[0].overskrift).toBe("overskrift");
-    expect(data[0].innhold).toBe("dette er et innhold");
+    expect(data[1].brukernavn).toBe("Zanacion");
+    expect(data[1].overskrift).toBe("overskrift");
+    expect(data[1].innhold).toBe("dette er et innhold");
     done();
   }
   sakDao.getNyheter(callback);
@@ -61,8 +61,7 @@ test("get brukernavn with sak_id", done => {
 test("slett nyhetsSak", done =>{
   function callback(status, data){
     console.log(status, data);
-    expect(data.length).toBe(1);
     done();
   }
-  sakDao.deleteNyhet(1, callback);
+  sakDao.deleteNyhet(4, callback);
 });
