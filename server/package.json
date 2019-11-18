@@ -4,14 +4,18 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server.js",
     "start-prod": "cross-env NODE_ENV=production babel-node src/server.js",
-    "test": "jest --detectOpenHandles --forceExit",
+    "test": "jest",
     "build": "babel src/ -d lib/",
     "prepublish": "npm run build",
     "flow": "flow"
   },
   "jest": {
-    "testRegex": "./tests/.+Test\\.js$",
-    "testURL": "http://localhost"
+    "verbose": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
