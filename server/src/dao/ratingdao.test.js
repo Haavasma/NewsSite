@@ -44,7 +44,7 @@ test("add rating", done=>{
         expect(data.affectedRows).toBeGreaterThanOrEqual(1);
         done();
     }
-    ratingDao.addRating({rating: 3, brukernavn:"Zanacion"}, 2, callback);
+    ratingDao.addRating({rating: 3, brukernavn:"harald"}, 2, callback);
 });
 
 

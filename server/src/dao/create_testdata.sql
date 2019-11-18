@@ -2,6 +2,7 @@ INSERT INTO kategori(kategori) values("Sport");
 INSERT INTO kategori(kategori) values("Politikk");
 
 INSERT INTO bruker(brukernavn, passord) values("Zanacion", "secret");
+INSERT INTO bruker(brukernavn, passord) values("harald", "secret");
 
 INSERT INTO sak values(1,"Zanacion", "overskrift", "dette er et innhold", "04/11/2019 @18:00", 
 "https://cdn.ymaws.com/www.itsmfusa.org/resource/resmgr/images/more_images/news-3.jpg",
