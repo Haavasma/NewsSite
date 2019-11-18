@@ -37,7 +37,7 @@ test("get one Sak from db", done =>{
     sakDao.getNyhet(1, callback);
 });
 
-test("get ever Sak from db", done =>{
+test("get every Sak from db", done =>{
   function callback(status, data){
     console.log(status, data);
     expect(data.length).toBe(2);
@@ -45,4 +45,14 @@ test("get ever Sak from db", done =>{
     expect(data[0].overskrift).toBe("overskrift");
     expect(data[0].innhold).toBe("dette er et innhold");
   }
-})
+  sakDao.getNyheter(callback);
+});
+
+test("get brukernavn with sak_id", done=>{
+function callback(status, data){
+  console.log(status, data);
+  expect(data.length).toBe(1);
+  expect(data[0].brukernavn).toBe("Zanacion");
+}
+sakDao.getBrukernavnAvSak_id(1, callback);
+});
