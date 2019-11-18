@@ -12,7 +12,7 @@ CREATE TABLE `bruker` (
 
 CREATE TABLE `kategori` (
  `kategori` varchar(255) NOT NULL,
- PRIMARY KEY (`kategori`),
+ PRIMARY KEY (`kategori`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `sak` (
