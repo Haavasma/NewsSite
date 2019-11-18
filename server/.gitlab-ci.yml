@@ -28,11 +28,10 @@ pages:
   dependencies:
     - run_tests
   script:
-    - mkdir .public
-    - cp -r coverage/* .public
-    - mv .public public
+    - mkdir newPublicFolder
+    - mv public/* newPublicFolder
   artifacts:
     paths:
-      - public
+      - newPublicFolder
   only:
     - master
