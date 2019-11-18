@@ -17,8 +17,8 @@ var pool: connection = mysql.createPool({
 let sakDao: SakDao = new SakDao(pool);
 
 beforeAll(done => {
-  runsqlfile("dao/create_tables.sql", pool, () => {
-    runsqlfile("dao/create_testdata.sql", pool, done);
+  runsqlfile("src/dao/create_tables.sql", pool, () => {
+    runsqlfile("src/dao/create_testdata.sql", pool, done);
     console.log("put up testData");
   });
 });
