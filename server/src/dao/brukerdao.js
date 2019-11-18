@@ -1,4 +1,4 @@
-const Dao  = require('./dao.js');
+const Dao: Dao  = require('./dao.js');
 const bcrypt = require('bcrypt');
 const saltRounds: number = 10;
 

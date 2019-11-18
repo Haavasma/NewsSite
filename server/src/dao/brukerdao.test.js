@@ -57,3 +57,4 @@ test("add bruker", done=>{
     brukerDao.addBruker({brukernavn: "harald", passord: "secret"}, callback);
 });
 
+

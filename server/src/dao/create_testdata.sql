@@ -13,7 +13,7 @@ INSERT INTO sak values(2, "Zanacion", "overskrift2", "dette er et innhold2", "04
 "Sport",
 0
 );
-INSERT INTO kommentar values(DEFAULT, "bra aritkkel", "harald", 1);
-INSERT INTO kommentar values(DEFAULT, "dårlig aritkkel", "harald", 1);
+INSERT INTO kommentar values(DEFAULT, "bra aritkkel", "harald", 2);
+INSERT INTO kommentar values(DEFAULT, "dårlig aritkkel", "harald", 2);
 
 INSERT INTO rating values(3, 1, "Zanacion");

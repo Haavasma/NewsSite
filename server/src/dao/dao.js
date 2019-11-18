@@ -1,5 +1,5 @@
 module.exports = class Dao {
-    constructor(pool: connection) {
+    constructor(pool: pool) {
       // Dependency Injection
       this.pool = pool;
     }
