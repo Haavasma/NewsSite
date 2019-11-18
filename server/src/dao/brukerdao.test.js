@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 
-const SakDao = require("./brukerdao.js");
+const BrukerDao = require("./brukerdao.js");
 const runsqlfile = require("./runsqlfile.js");
 
 // GitLab CI Pool
@@ -36,5 +36,24 @@ test("get one bruker", done => {
     done();
   }
   brukerDao.getBruker({brukernavn: "Zanacion"},callback);
+});
+
+test("get passord", done=>{
+    function callback(status, data){
+        console.log(status, data);
+        expect(data.length).toBe(1);
+        expect(data[0].passord).toBe("secret");
+        done();
+    }
+    brukerDao.getPassord({brukernavn: "Zanacion"}, callback);
+});
+
+test("add bruker", done=>{
+    function callback(status, data){
+        console.log(status, data);
+        expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+        done();
+    }
+    brukerDao.addBruker({brukernavn: "harald", passord: "secret"}, callback);
 });
 
