@@ -22,18 +22,3 @@ run_tests:
   artifacts:
     paths:
       - server/coverage/
-
-# Publish coverage report on gitlab-pages
-pages:
-  stage: deploy
-  dependencies:
-    - run_tests
-  script:
-    - mkdir .public
-    - cp -r coverage/* .public
-    - mv .public public
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
