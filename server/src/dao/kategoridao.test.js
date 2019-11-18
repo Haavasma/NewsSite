@@ -30,7 +30,7 @@ afterAll(() => {
 test("get kategorier", done => {
   function callback(status, data) {
     console.log(status, data);
-    expect(data.length).toBe(2);
+    expect(data.length).toBe(2)
     expect(data[0].kategori).toBe("Politikk");
     expect(data[1].kategori).toBe("Sport");
     done();
