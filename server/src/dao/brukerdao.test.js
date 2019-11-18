@@ -16,6 +16,13 @@ var pool: connection = mysql.createPool({
 
 let brukerDao: BrukerDao = new BrukerDao(pool);
 
+beforeAll(done => {
+  runsqlfile("src/dao/create_tables.sql", pool, () => {
+    runsqlfile("src/dao/create_testdata.sql", pool, done);
+    console.log("put up testData");
+  });
+});
+
 afterAll(() => {
   pool.end();
 });

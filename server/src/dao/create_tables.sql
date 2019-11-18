@@ -1,8 +1,8 @@
+DROP TABLE IF EXISTS kategori;
+DROP TABLE IF EXISTS bruker;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS kommentar;
 DROP TABLE IF EXISTS sak;
-DROP TABLE IF EXISTS kategori;
-DROP TABLE IF EXISTS bruker;
 
 CREATE TABLE `kategori` (
  `kategori` varchar(255) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `sak` (
  KEY `kategori` (`kategori`),
  KEY `brukernavn` (`brukernavn`),
  CONSTRAINT `sak_ibfk_1` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kategori`) ON DELETE CASCADE,
- CONSTRAINT `sak_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE ON UPDATE CASCADE
+ CONSTRAINT `sak_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `kommentar` (
@@ -49,5 +49,5 @@ CREATE TABLE `rating` (
  KEY `sak_id` (`sak_id`),
  KEY `brukernavn` (`brukernavn`),
  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`sak_id`) REFERENCES `sak` (`sak_id`) ON DELETE CASCADE,
- CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE ON UPDATE CASCADE
+ CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
