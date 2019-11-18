@@ -15,7 +15,6 @@ import socketIOClient from 'socket.io-client';
 export class LiveFeed extends Component {
   saker: Sak[] = [];
   socketURL: string = "http://localhost:4001";
-
  
   componentDidMount() {
     let socket = socketIOClient(this.socketURL);
