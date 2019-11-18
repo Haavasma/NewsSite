@@ -11,13 +11,13 @@ CREATE TABLE `kategori` (
 
 CREATE TABLE `bruker` (
  `brukernavn` varchar(255) NOT NULL,
- `passord` varchar(255) DEFAULT NULL,
+ `passord` varchar(255) NOT NULL,
  PRIMARY KEY (`brukernavn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `sak` (
  `sak_id` int(11) NOT NULL AUTO_INCREMENT,
- `brukernavn` varchar(255) DEFAULT NULL,
+ `brukernavn` varchar(255) NOT NULL,
  `overskrift` varchar(255) NOT NULL,
  `innhold` varchar(10000) NOT NULL,
  `tidspunkt` varchar(300) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `kommentar` (
  `kommentar_id` int(11) NOT NULL AUTO_INCREMENT,
  `kommentar` varchar(500) DEFAULT NULL,
  `brukernavn` varchar(255) DEFAULT NULL,
- `sak_id` int(11) DEFAULT NULL,
+ `sak_id` int(11) NOT NULL,
  PRIMARY KEY (`kommentar_id`),
  KEY `sak_id` (`sak_id`),
  CONSTRAINT `kommentar_ibfk_1` FOREIGN KEY (`sak_id`) REFERENCES `sak` (`sak_id`) ON DELETE CASCADE
