@@ -24,9 +24,9 @@ CREATE TABLE `sak` (
  `bilde` varchar(255) DEFAULT NULL,
  `kategori` varchar(255) NOT NULL,
  `viktighet` int(1) NOT NULL,
- PRIMARY KEY (`sak_id`) ON DELETE CASCADE,
- KEY `kategori` (`kategori`) ON DELETE CASCADE,
- KEY `brukernavn` (`brukernavn`) ON DELETE CASCADE,
+ PRIMARY KEY (`sak_id`),
+ KEY `kategori` (`kategori`),
+ KEY `brukernavn` (`brukernavn`),
  CONSTRAINT `sak_ibfk_1` FOREIGN KEY (`kategori`) REFERENCES `kategori` (`kategori`) ON DELETE CASCADE,
  CONSTRAINT `sak_ibfk_2` FOREIGN KEY (`brukernavn`) REFERENCES `bruker` (`brukernavn`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
