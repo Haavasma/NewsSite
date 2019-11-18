@@ -34,15 +34,14 @@ test("get one Sak from db", done => {
     expect(data[0].brukernavn).toBe("Zanacion");
     done();
   }
-  sakDao.getNyhet(2, callback);
+  sakDao.getNyhet(3, callback);
 });
 
 test("get every Sak from db", done => {
   function callback(status, data) {
     console.log(status, data);
-    expect(data[1].brukernavn).toBe("Zanacion");
-    expect(data[1].overskrift).toBe("overskrift");
-    expect(data[1].innhold).toBe("dette er et innhold");
+    expect(data.length).toBeGreaterThanOrEqual(1);
+    expect(data[0].brukernavn).toBe("Zanacion");
     done();
   }
   sakDao.getNyheter(callback);
