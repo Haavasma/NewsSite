@@ -80,4 +80,21 @@ test("update nyhetsSak", done=>{
     kategori: "Politikk",
     viktighet: 1
 }, 2, callback);
-})
+});
+test("add nyhet", done=>{
+  function callback(status, data){
+    console.log(status, data);
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    done();
+  }
+  sakDao.lagNyhet({
+    brukernavn:"Zanacion",
+    overskrift: "nyOverskrift",
+    innhold: "nytt innhold",
+    tidspunkt: "nå",
+    bilde: "sladj",
+    kategori: "Politikk",
+    viktighet: 1
+  })
+});
+
