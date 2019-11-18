@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS `rating`;
+DROP TABLE IF EXISTS `kommentar`;
+DROP TABLE IF EXISTS `sak`;
+
 CREATE TABLE `kategori` (
  `kategori` varchar(255) NOT NULL,
  PRIMARY KEY (`kategori`)
