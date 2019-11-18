@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS bruker;
 
 CREATE TABLE `bruker` (
  `brukernavn` varchar(255) NOT NULL,
- `passord` varchar(255) DEFAULT NULL,
+ `passord` varchar(255) NOT NULL,
  PRIMARY KEY (`brukernavn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
