@@ -38,13 +38,13 @@ test("get rating", done => {
 });
 
 
-test("add rating"), done=>{
+test("add rating", done=>{
     function callback(status, data){
         console.log(status, data);
         expect(data.affectedRows).toBeGreaterThanOrEqual(1);
         done();
     }
     ratingDao.addRating({rating: 3, brukernavn:"Zanacion"}, 2, callback);
-}
+});
 
 
