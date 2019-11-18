@@ -30,7 +30,7 @@ afterAll(() => {
 test("get kommentar", done => {
   function callback(status, data) {
     console.log(status, data);
-    expect(data[0].brukernavn).toBe("harald");
+    expect(data[1].brukernavn).toBe("harald");
     done();
   }
   kommentarDao.getKommentar(2, callback);
