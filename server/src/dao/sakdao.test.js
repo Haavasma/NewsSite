@@ -19,6 +19,7 @@ let sakDao: SakDao = new SakDao(pool);
 beforeAll(done => {
   runsqlfile("dao/create_tables.sql", pool, () => {
     runsqlfile("dao/create_testdata.sql", pool, done);
+    console.log("put up testData");
   });
 });
 
