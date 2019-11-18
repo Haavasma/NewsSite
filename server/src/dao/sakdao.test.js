@@ -95,6 +95,6 @@ test("add nyhet", done=>{
     bilde: "sladj",
     kategori: "Politikk",
     viktighet: 1
-  })
+  }, callback)
 });
 
