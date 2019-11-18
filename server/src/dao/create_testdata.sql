@@ -1,7 +1,7 @@
-INSERT INTO TABLE kategori values("Sport");
-INSERT INTO TABLE kategori values("Politikk");
+INSERT INTO TABLE kategori(kategori) values("Sport");
+INSERT INTO TABLE kategori(kategori) values("Politikk");
 
-INSERT INTO TABLE bruker values("Zanacion", "secret");
+INSERT INTO TABLE bruker(brukernavn, passord) values("Zanacion", "secret");
 
 INSERT INTO TABLE sak values(DEFAULT,"Zanacion", "overskrift", "dette er et innhold", "04/11/2019 @18:00", 
 "https://cdn.ymaws.com/www.itsmfusa.org/resource/resmgr/images/more_images/news-3.jpg",
