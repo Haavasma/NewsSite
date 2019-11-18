@@ -3,12 +3,6 @@ import { sharedComponentData } from 'react-simplified';
 import axios from 'axios';
 import { Alert } from './widgets';
 
-var socket  = new WebSocket("ws:localhost:4000", "livefeed");
-
-socket.onmessage = e=>{
-  console.log(e.data);
-}
-
 export class Kommentar{
     id: number = 0;
     kommentar: string = "";
@@ -43,7 +37,7 @@ export class Bruker {
 
 
 class SakStore {
-    saker: Sak[]
+    saker: Sak[];
     currentSak: Sak = new Sak();
 
     getSaker(){
@@ -103,19 +97,6 @@ class SakStore {
             localStorage.token = response.data.jwt;
         }
     })
-
-        /*return axios.delete('/api/nyheter/', headers: {
-            "x-access-token": localStorage.token
-        },
-        {data: {
-            "sak_id": id,
-        }}).then(response=>{
-            if(response.data.jwt){
-                localStorage.token = response.data.jwt;
-            }
-            console.log(response);
-        })*/
-
     }
 }
 class KommentarStore{

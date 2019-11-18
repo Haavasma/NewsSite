@@ -10,6 +10,9 @@ module.exports = class SakDao extends Dao {
     getBrukernavnAvSak_id(id: number, callback: function){
         super.query("select brukernavn from sak WHERE sak_id = ?", [id], callback);
     }
+    getUviktigeNyheter(callback: function){
+        super.query("select sak_id, brukernavn, overskrift, innhold, tidspunkt, bilde, kategori, viktighet from sak WHERE viktighet = 0 order by sak_id desc limit 100",[], callback);
+    }
     lagNyhet(json: JSON, callback: function){
         var val = [json.brukernavn, json.overskrift, json.innhold, json.tidspunkt, json.bilde, json.kategori, json.viktighet];
         super.query("insert into sak(sak_id, brukernavn, overskrift, innhold, tidspunkt, bilde, kategori, viktighet) values (DEFAULT, ?, ?, ?, ?, ?, ?, ?)",

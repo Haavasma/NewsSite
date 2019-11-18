@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Nyhetsside</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-  <style>
-    .card{
-      margin: auto;
-      margin-top: 10px;
-      width: 60%;
-      background-color: darkslategrey;
-      color: white;
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Nyhetsside</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<style>
+  .card {
+    margin: auto;
+    margin-top: 10px;
+    width: 60%;
+    background-color: darkslategrey;
+    color: white;
+  }
+
+  textarea {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 30px;
+  }
+
+  button {
+    margin: auto;
+  }
+
+  #container {
+    	height: 50px;
+    	width: 800px;
+    	border: 1px solid #333;
+    	overflow: hidden;
+    	margin: 25px auto;
     }
-    textarea {
-     width: 100%;
-     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-     box-sizing: border-box;         /* Opera/IE 8+ */
-     }
-     h4{
-       font-size: 20px;
-     }
-     h5{
-       font-size: 30px;
-     }
-     button{
-       margin: auto;
-     }
-  </style>
+    
+    .box {
+    	margin: 10px -400px;
+      font-size: 20px;
+    	-webkit-animation-name: move;
+    	-webkit-animation-duration: 10s;
+    	-webkit-animation-iteration-count: infinite;
+    	-webkit-animation-direction: right;
+    	-webkit-animation-timing-function: linear;
+    }
+    
+    .box:hover {
+    	-webkit-animation-play-state: paused;
+    }
+    
+    @-webkit-keyframes move {
+    	0% {
+    		margin-left: -400px;
+    	}
+    	100% {
+    		margin-left: 800px;
+    	}
+    }
+</style>
+
 </html>

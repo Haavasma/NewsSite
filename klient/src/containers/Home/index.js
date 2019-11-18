@@ -28,7 +28,6 @@ export class Home extends Component {
       })
       return (
         <div>
-          <LiveFeed></LiveFeed>
           {tempSak.map(e => (
             <NavLink key={e.sak_id} to={"/Artikkel/" + e.sak_id}>
               <Card title={e.overskrift} image={e.bilde}>

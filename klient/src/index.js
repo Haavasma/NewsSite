@@ -26,6 +26,7 @@ if (root) ReactDOM.render(
     <div>
       <Alert></Alert>
       <Menu />
+      <LiveFeed></LiveFeed>
       <Route exact path="/" component={Home} />
       <Route exact path="/kategori/:kategori" component={Kategori} />
       <Route exact path="/Artikkel/:sak_id" component={ArtikkelSide} />

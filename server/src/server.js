@@ -57,6 +57,14 @@ app.get("/api/nyheter", (req, res) => {
     });
 });
 
+app.get("/api/uviktigeNyheter", (req, res) => {
+    console.log("Fikk request fra klient");
+    sakdao.getUviktigeNyheter((status, data) => {
+        res.status(status);
+        res.json(data);
+    });
+});
+
 app.get("/api/nyheter/:sak_id", (req, res) => {
     console.log("Fikk request fra klient");
     sakdao.getNyhet(req.params.sak_id, (status, data) => {

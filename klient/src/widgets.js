@@ -82,6 +82,14 @@ class NavBarRight extends Component<{ exact?: boolean, to: string, children?: Re
   }
 }
 
+export class Spinner extends Component<{}>{
+  render(){
+    return <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  }
+}
+
 /**
  * Renders a navigation bar using Bootstrap classes
  */
@@ -91,7 +99,7 @@ export class NavBar extends Component<{ brand?: React.Node, children?: React.Nod
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav className="sticky-top navbar navbar-expand-sm bg-dark navbar-dark">
         {
           <NavLink className="navbar-brand" activeClassName="active" exact to="/">
             {this.props.brand}

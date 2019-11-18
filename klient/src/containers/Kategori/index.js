@@ -22,8 +22,6 @@ export class Kategori extends Component<{ match: { params: { kategori: string } 
         kategoriSaker = kategoriSaker.filter(e => (e.kategori == this.props.match.params.kategori));
         return (
           <div>
-            <LiveFeed>
-            </LiveFeed>
             {kategoriSaker.map(e => (
               <NavLink key={e.sak_id} to={"/Artikkel/" + e.sak_id}>
                 <Card title={e.overskrift} image={e.bilde}>

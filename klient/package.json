@@ -16,7 +16,8 @@
     "flow": "^0.2.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
-    "react-simplified": "^1.6.1"
+    "react-simplified": "^1.6.1",
+    "socket.io-client": "^2.3.0"
   },
   "browserslist": {
     "production": [
