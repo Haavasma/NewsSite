@@ -61,7 +61,23 @@ test("get brukernavn with sak_id", done => {
 test("slett nyhetsSak", done =>{
   function callback(status, data){
     console.log(status, data);
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
     done();
   }
-  sakDao.deleteNyhet(4, callback);
+  sakDao.deleteNyhet({sak_id: 1}, callback);
 });
+test("update nyhetsSak", done=>{
+  function callback(status, data){
+    console.log(status, data);
+    expect(data.affectedRows).toBeGreaterThanOrEqual(1);
+    done();
+  }
+  sakDao.oppdaterNyhet({
+    overskrift: "nyOverskrift",
+    innhold: "nytt innhold",
+    tidspunkt: "nå",
+    bilde: "sladj",
+    kategori: "Politikk",
+    viktighet: 1
+}, 2, callback);
+})
