@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS kommentar;
+DROP TABLE IF EXISTS sak;
+DROP TABLE IF EXISTS bruker;
+DROP TABLE IF EXISTS kategori;
+
 CREATE TABLE `kategori` (
  `kategori` varchar(255) NOT NULL,
  PRIMARY KEY (`kategori`)
