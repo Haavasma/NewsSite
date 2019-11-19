@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 
-const BrukerDao = require("./brukerdao.js");
+const BrukerDao: BrukerDao = require("./brukerdao.js");
 const KommentarDao = require("./kommentardao");
 const SakDao = require("./sakdao");
 const KategoriDao = require("./kategoridao");
@@ -19,10 +19,10 @@ var pool: connection = mysql.createPool({
 });
 
 let brukerDao: BrukerDao = new BrukerDao(pool);
-let KommentarDao: KommentarDao = new KommentarDao(pool);
-let SakDao: SakDao = new SakDao(pool);
-let KategoriDao: KategoriDao = new KategoriDao(pool);
-let RatingDao: RatingDao = new RatingDao(pool);
+let kommentarDao: KommentarDao = new KommentarDao(pool);
+let sakDao: SakDao = new SakDao(pool);
+let kategoriDao: KategoriDao = new KategoriDao(pool);
+let ratingDao: RatingDao = new RatingDao(pool);
 
 beforeAll(done => {
     runsqlfile("src/dao/create_tables.sql", pool, () => {
