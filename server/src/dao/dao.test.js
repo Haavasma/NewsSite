@@ -103,6 +103,8 @@ test("get one Sak from db", done => {
         console.log(status, data);
         expect(data.length).toBe(1);
         expect(data[0].brukernavn).toBe("Zanacion");
+        expect(data[0].overskrift).toBe("overskrift");
+        expect(data[0].innhold).toBe("dette er et innhold");
         done();
     }
     sakDao.getNyhet(1, callback);
