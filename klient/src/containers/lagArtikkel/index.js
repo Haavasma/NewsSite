@@ -134,7 +134,7 @@ export class LagArtikkel extends Component {
       }
     }
     makeArticle() {
-      if (this.sak.overskrift == "" || this.sak.innhold == "" || this.sak.bilde == "") {
+      if (!this.sak.overskrift|| this.sak.innhold == "" || this.sak.bilde == "") {
         Alert.danger("de nødvendige feltene må fylles ut");
         return;
       }

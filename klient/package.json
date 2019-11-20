@@ -6,8 +6,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "server": "node-env-run server --exec nodemon",
-    "dev": "run-p server start",
     "flow": "flow"
   },
   "proxy": "http://localhost:4000",
