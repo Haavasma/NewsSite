@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { LiveFeed } from './../LiveFeed/index';
-import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } from './../../widgets';
+import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem, ImageCard} from './../../widgets';
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
@@ -34,9 +34,9 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
                   </NavLink>
                 </Column>
               </Row>
-              <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
+              <ImageCard title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
                 {sakStore.currentSak.innhold}
-              </Card>
+              </ImageCard>
               <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
               </Ratingcomponent>
               <Card>
@@ -81,9 +81,9 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
         }
         return (
             <div>
-              <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
+              <ImageCard title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
                 {sakStore.currentSak.innhold}
-              </Card>
+              </ImageCard>
               <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
 
               </Ratingcomponent>
@@ -117,7 +117,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Card title="Kommentarer">
                 <ListGroup>
                   {kommentarStore.kommentarer.map(e => (
-                    <ListGroupItem key={e.kommentar} onClick = {()=>console.log("");}>
+                    <ListGroupItem key={e.kommentar} onClick = {()=>console.log("")}>
                       <h4>{e.brukernavn}</h4>
                       {e.kommentar}
                     </ListGroupItem>
@@ -129,10 +129,9 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
       }
       return (
         <div>
-          <Card title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
+          <ImageCard title={sakStore.currentSak.overskrift} image={sakStore.currentSak.bilde}>
             {sakStore.currentSak.innhold}
-          
-          </Card>
+          </ImageCard>
           <Ratingcomponent sak_id={this.props.match.params.sak_id}>
           </Ratingcomponent>
           <Card>

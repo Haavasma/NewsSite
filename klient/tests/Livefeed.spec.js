@@ -10,4 +10,5 @@ var sak = new Sak();
 
 describe('ListGroup test', ()=>{
     const wrapper = shallow(<ListGroup></ListGroup>);
+    console.log("testing");
 });

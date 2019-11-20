@@ -5,8 +5,7 @@ import ReactDOM from 'react-dom';
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
-import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } from './../../widgets';
-import {LiveFeed} from './../LiveFeed/index';
+import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem, ImageCard} from './../../widgets';
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
@@ -24,11 +23,11 @@ export class Kategori extends Component<{ match: { params: { kategori: string } 
           <div>
             {kategoriSaker.map(e => (
               <NavLink key={e.sak_id} to={"/Artikkel/" + e.sak_id}>
-                <Card title={e.overskrift} image={e.bilde}>
+                <ImageCard title={e.overskrift} image={e.bilde}>
                   <div className="card-footer text-muted">
                     {e.tidspunkt}
                   </div>
-                </Card>
+                </ImageCard>
               </NavLink>
             )
             )}

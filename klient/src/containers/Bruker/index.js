@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import {LiveFeed} from './../LiveFeed/index';
-import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } from './../../widgets';
+import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem, ImageCard} from './../../widgets';
 
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
@@ -24,11 +24,11 @@ export class Bruker extends Component <{ match: { params: { brukernavn: string }
         <div>
           {tempSak.map(e => (
             <NavLink key={e.sak_id} to={"/Artikkel/" + e.sak_id}>
-              <Card title={e.overskrift} image={e.bilde}>
+              <ImageCard title={e.overskrift} image={e.bilde}>
                 <div className="card-footer text-muted">
                   {e.tidspunkt}
                 </div>
-              </Card>
+              </ImageCard>
             </NavLink>
           )
           )}
