@@ -22,7 +22,6 @@ export class Bruker extends Component <{ match: { params: { brukernavn: string }
       tempSak = tempSak.filter(e => e.brukernavn  == this.props.match.params.brukernavn);
       return (
         <div>
-          <LiveFeed></LiveFeed>
           {tempSak.map(e => (
             <NavLink key={e.sak_id} to={"/Artikkel/" + e.sak_id}>
               <Card title={e.overskrift} image={e.bilde}>

@@ -130,7 +130,6 @@ class KategoriStore {
 
 class BrukerStore {
     bruker: Bruker;
-
     autoLogin() {
         if (localStorage.token) {
             console.log("token from store: " + localStorage.token);
@@ -203,11 +202,11 @@ class RatingStore {
     }
 };
 
-export let ratingStore = sharedComponentData(new RatingStore());
-export let sakStore = sharedComponentData(new SakStore());
-export let kommentarStore = sharedComponentData(new KommentarStore());
-export let kategoriStore = sharedComponentData(new KategoriStore());
-export let brukerStore = sharedComponentData(new BrukerStore());
+export let ratingStore: RatingStore = sharedComponentData(new RatingStore());
+export let sakStore: SakStore = sharedComponentData(new SakStore());
+export let kommentarStore: KommentarStore = sharedComponentData(new KommentarStore());
+export let kategoriStore: KategoriStore = sharedComponentData(new KategoriStore());
+export let brukerStore: BrukerStore = sharedComponentData(new BrukerStore());
 sakStore.getSaker();
 kategoriStore.getKategorier().then(e => { console.log(kategoriStore.kategorier) });
 kommentarStore.getKommentarer(2).then(e => { console.log(kommentarStore.kommentarer) });

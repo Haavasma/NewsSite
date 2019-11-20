@@ -16,10 +16,10 @@ import {Bruker} from './containers/Bruker/index';
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore , brukerStore} from './Stores';
-const history = createHashHistory();
+const history: History<any> = createHashHistory();
 
 
-const root = document.getElementById('root');
+const root: HTMLElement = document.getElementById('root');
 
 if (root) ReactDOM.render(
   <HashRouter>

@@ -19,6 +19,7 @@ export class LiveFeed extends Component {
   componentDidMount() {
     let socket = socketIOClient(this.socketURL);
     socket.on("livefeed", saker => {
+      console.log("received saker from socket: " + saker[0].overskrift);
       this.saker = saker;
     });
   }
@@ -37,9 +38,4 @@ export class LiveFeed extends Component {
       return <Spinner></Spinner>
     }
   }
-
-  /*
-  mounted() {
-    sakStore.getSaker().catch((error: Error) => Alert.danger(error.message));
-  }*/
 }

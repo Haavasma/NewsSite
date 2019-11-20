@@ -10,6 +10,7 @@ import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem } fr
 import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore, brukerStore} from './../../Stores.js';
+import socketIOClient from 'socket.io-client';
 const history = createHashHistory();
 
 
