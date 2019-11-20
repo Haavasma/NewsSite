@@ -10,4 +10,4 @@ var sak: Sak = new Sak();
 
 describe('ListGroup test', ()=>{
     const wrapper = shallow(<ListGroup></ListGroup>);
-})
+});
