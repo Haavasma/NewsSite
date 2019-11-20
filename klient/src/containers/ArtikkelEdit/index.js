@@ -12,6 +12,7 @@ import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './../../Stores.js';
 const history = createHashHistory();
+var localStorage: Storage;
 
 export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number } } }>{
     render() {

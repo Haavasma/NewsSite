@@ -114,7 +114,7 @@ export class NavBar extends Component<{ brand?: React.Node, children?: React.Nod
 /**
  * Renders an information card using Bootstrap classes
  */
-export class Card extends Component<{ title: React.Node, children?: React.Node , image: string, width: string}> {
+export class Card extends Component<{ title: React.Node, children?: React.Node , image?: string, width?: string}> {
   render() {
     return (
       <div className="card" style = {{width: this.props.width}}>

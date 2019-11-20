@@ -15,8 +15,8 @@ variables:
 run_tests:
   stage: test
   script:
-    - cd server && npm install && npm test && flow check src
-    - cd ../klient && npm install && npm test && flow check src
+    - cd server && npm install && npm test && npm run flow
+    - cd ../klient && npm install && npm test && npm run flow
   artifacts:
     paths:
       - server/coverage/

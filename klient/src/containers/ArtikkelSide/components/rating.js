@@ -16,7 +16,7 @@ export class Ratingcomponent extends Component<{ sak_id: number }>{
     rating: Rating = new Rating();
     render() {
         if (brukerStore.bruker) {
-            rateButton = rated ? (<Button.Secondary>Rate</Button.Secondary>) :
+            rateButton = rated ? (<Button.Secondary onClick={e=>{console.log("");}}>Rate</Button.Secondary>) :
                 (
                     <Button.Primary onClick={this.rate}>
                         Rate

@@ -117,7 +117,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Card title="Kommentarer">
                 <ListGroup>
                   {kommentarStore.kommentarer.map(e => (
-                    <ListGroupItem key={e.kommentar}>
+                    <ListGroupItem key={e.kommentar} onClick = {()=>console.log("");}>
                       <h4>{e.brukernavn}</h4>
                       {e.kommentar}
                     </ListGroupItem>
