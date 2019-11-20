@@ -12,9 +12,9 @@ module.exports = class BrukerDao extends Dao{
         super.query("select passord from bruker where brukernavn = ?", [json.brukernavn], callback);
     }
     addBruker(json: JSON, callback: function){
-        var salt = bcrypt.genSaltSync(saltRounds);
-        var hash = bcrypt.hashSync(json.passord, salt);
-        var val = [json.brukernavn, hash];
+        var salt: string = bcrypt.genSaltSync(saltRounds);
+        var hash: string = bcrypt.hashSync(json.passord, salt);
+        var val: array = [json.brukernavn, hash];
         super.query("insert into bruker values(?, ?)", val, callback);
     }
 };

@@ -1,4 +1,4 @@
-const Dao  = require('./dao.js');
+const Dao: Dao  = require('./dao.js');
 
 module.exports = class KategoriDao extends Dao {
     getKategorier(callback: function){

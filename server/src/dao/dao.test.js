@@ -1,11 +1,11 @@
 var mysql = require("mysql");
 
 const BrukerDao: BrukerDao = require("./brukerdao.js");
-const KommentarDao = require("./kommentardao");
-const SakDao = require("./sakdao");
-const KategoriDao = require("./kategoridao");
-const RatingDao = require("./ratingdao");
-const runsqlfile = require("./runsqlfile.js");
+const KommentarDao: KommentarDao = require("./kommentardao");
+const SakDao: SakDao = require("./sakdao");
+const KategoriDao: KategoriDao = require("./kategoridao");
+const RatingDao: RatingDao = require("./ratingdao");
+const runsqlfile: function = require("./runsqlfile.js");
 
 // GitLab CI Pool
 var pool: connection = mysql.createPool({

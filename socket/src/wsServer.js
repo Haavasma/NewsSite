@@ -1,13 +1,13 @@
 //@flow
-let express: function = require("express");
-let axios: function = require("axios");
+let express: express = require("express");
+let axios: axios= require("axios");
 let socketio: function = require("socket.io");
 
 let app = express();
 
 let server: function = app.listen(4001, ()=> console.log("Listening on port 4001"));
 
-let io: function = socketio(server);
+let io: socketio = socketio(server);
 
 let interval: IntervalID;
 io.on("connection", socket => {
@@ -26,6 +26,7 @@ io.on("connection", socket => {
 
 let getLiveFeedAndEmit = async socket =>{
     try{
+        console.log("emitted livefeed");
         let res = await axios.get('http://localhost:4000/api/uviktigeNyheter');
         socket.emit("livefeed", res.data);
     } catch(error){

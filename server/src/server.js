@@ -224,19 +224,10 @@ app.post("/token", (req, res)=>{
         console.log("Token ok: " + decoded.brukernavn);
         console.log("token refreshed");
         token = jwt.sign({brukernavn: decoded.brukernavn}, privateKEY.key, {
-          expiresIn:6
+          expiresIn:2000
         });
         res.json({jwt: token, "brukernavn": decoded.brukernavn});
       }
     })
   })
-  
-
-
-
-
-
-
-
-
 var server = app.listen(4000);

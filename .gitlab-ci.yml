@@ -10,15 +10,13 @@ variables:
   MYSQL_ROOT_PASSWORD: secret
 
 # Install node libraries
-before_script:
-  - cd server
-  - npm install
 
 # Run JEST tests
 run_tests:
   stage: test
   script:
-    - npm test
+    - cd server && npm install && npm test
+    - cd ../client && npm install && npm test
   artifacts:
     paths:
       - server/coverage/
