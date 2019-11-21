@@ -15,7 +15,7 @@ variables:
 run_tests:
   stage: test
   script:
-    - cd server && npm install && npm test && npm run flow
+    - cd server && npm install && npm test && npm run flow && npm start
     - cd ../klient && npm install && npm test && npm run flow
   artifacts:
     paths:

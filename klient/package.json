@@ -1,5 +1,5 @@
 {
-  "name": "newspage",
+  "name": "service",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "node ./scripts/enable_babelrc.js",
@@ -9,6 +9,13 @@
     "flow": "flow"
   },
   "proxy": "http://localhost:4000",
+  "jest": {
+    "testRegex": "./tests/.+Test\\.js$",
+    "setupFiles": [
+      "./tests/setup.js"
+    ],
+    "testURL": "http://localhost"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "flow": "^0.2.3",
@@ -17,12 +24,18 @@
     "react-simplified": "^1.6.1",
     "socket.io-client": "^2.3.0"
   },
-  "jest": {
-    "testRegex": "./tests/.+Test\\.js$",
-    "setupFiles": [
-      "./tests/setup.js"
-    ],
-    "testURL": "http://localhost"
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.6.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "flow-bin": "^0.112.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0"
   },
   "browserslist": {
     "production": [
@@ -35,21 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-flow": "^7.0.0",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.6",
-    "body-parser": "^1.19.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "flow-bin": "^0.112.0",
-    "jest": "^24.9.0",
-    "npm-run-all": "^4.1.5",
-    "pino-colada": "^1.4.5"
   }
 }
