@@ -4,11 +4,10 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { Route, NavLink } from 'react-router-dom';
-import { Alert, Card, NavBar, Button, Row, Column, ListGroup, ListGroupItem, Spinner } from './../../widgets';
+import { Spinner } from './../../widgets';
 
 import { createHashHistory } from 'history';
-import { sharedComponentData } from 'react-simplified';
-import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './../../Stores.js';
+import { Sak } from './../../Stores.js';
 import socketIOClient from 'socket.io-client';
 
 

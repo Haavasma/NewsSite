@@ -11,7 +11,7 @@ var history = createHashHistory();
 export class LoginCard extends Component<{ children?: React.Node, bruker: Bruker }> {
     render() {
         return (
-            <Card width="50%">
+            <Card title = "">
                 <form>
                     <FormGroup
                         text="Brukernavn: "
