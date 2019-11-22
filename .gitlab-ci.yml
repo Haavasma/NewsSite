@@ -17,6 +17,7 @@ run_tests:
   script:
     - cd server && npm install && npm test && npm run flow
     - cd ../klient && npm install && npm test && npm run flow
+    - cd ../socket && npm install && npm run flow
   artifacts:
     paths:
       - server/coverage/
