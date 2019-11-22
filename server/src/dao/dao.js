@@ -1,5 +1,8 @@
+//@flow
+
 module.exports = class Dao {
-    constructor(pool: pool) {
+  pool: any;
+    constructor(pool: any) {
       // Dependency Injection
       this.pool = pool;
     }

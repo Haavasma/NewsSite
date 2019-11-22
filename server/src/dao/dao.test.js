@@ -1,3 +1,5 @@
+//@flow
+
 var mysql = require("mysql");
 
 const BrukerDao: BrukerDao = require("./brukerdao.js");
@@ -8,7 +10,7 @@ const RatingDao: RatingDao = require("./ratingdao");
 const runsqlfile: function = require("./runsqlfile.js");
 
 // GitLab CI Pool
-var pool: connection = mysql.createPool({
+var pool = mysql.createPool({
     connectionLimit: 1,
     host: "mysql",
     user: "root",

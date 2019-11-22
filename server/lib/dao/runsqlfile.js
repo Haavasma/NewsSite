@@ -1,19 +1,21 @@
-//@flow
+"use strict";
 
 var mysql = require("mysql");
+
 var fs = require("fs");
 
-module.exports = function run(filename: string, pool: any, done: function) {
+module.exports = function run(filename, pool, done) {
   console.log("runsqlfile: reading file " + filename);
-  let sql: string = fs.readFileSync(filename, "utf8");
-  pool.getConnection((err, connection) => {
+  var sql = fs.readFileSync(filename, "utf8");
+  pool.getConnection(function (err, connection) {
     if (err) {
       console.log("runsqlfile: error connecting");
       done();
     } else {
       console.log("runsqlfile: connected");
-      connection.query(sql, (err, rows) => {
+      connection.query(sql, function (err, rows) {
         connection.release();
+
         if (err) {
           console.log(err);
           done();

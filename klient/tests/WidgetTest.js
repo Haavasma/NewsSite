@@ -14,7 +14,7 @@ describe('Alert tests', () => {
   const wrapper = shallow(<Alert />);
 
   it('initially', () => {
-    let instance: Alert = Alert.instance();
+    let instance = Alert.instance();
     expect(typeof instance).toEqual('object');
     if (instance) expect(instance.alerts).toEqual([]);
 
@@ -25,7 +25,7 @@ describe('Alert tests', () => {
     Alert.danger('test');
 
     setTimeout(() => {
-      let instance: Alert = Alert.instance();
+      let instance = Alert.instance();
       expect(typeof instance).toEqual('object');
       if (instance) expect(instance.alerts).toEqual([{ id: 0, text: 'test', type: 'danger' }]);
 
@@ -38,7 +38,7 @@ describe('Alert tests', () => {
   it('after clicking close button', () => {
     wrapper.find('button.close').simulate('click');
 
-    let instance: Alert = Alert.instance();
+    let instance = Alert.instance();
     expect(typeof instance).toEqual('object');
     if (instance) expect(instance.alerts).toEqual([]);
 
@@ -49,7 +49,7 @@ describe('Alert tests', () => {
 });
 
 describe('Card tests', ()=>{
-  const wrapper: ShallowWrapper = shallow(<Card title = "tittel">hallo</Card>);
+  const wrapper= shallow(<Card title = "tittel">hallo</Card>);
 
   it('renders title', () => {
     let instance = Card.instance();
@@ -66,14 +66,16 @@ describe('Card tests', ()=>{
 });
 
 describe('livefeed test', ()=>{
-  const wrapper: ShallowWrapper = shallow(<LiveFeed></LiveFeed>);
+  const wrapper = shallow(<LiveFeed></LiveFeed>);
   let sak: Sak = new Sak();
   sak.overskrift = "overskrift";
   sak.tidspunkt = "klokka2";
   let saker: Sak[] = [sak];
   it('renders articleText', ()=>{
     let instance = LiveFeed.instance();
+    if(instance){
     instance.saker = saker;
+    }
     expect(wrapper.find('NavLink').text()).toEqual(" (" +sak.overskrift + ": " + sak.tidspunkt + ").    .");
   });
 });

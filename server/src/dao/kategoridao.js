@@ -1,3 +1,5 @@
+//@flow
+
 const Dao: Dao  = require('./dao.js');
 
 module.exports = class KategoriDao extends Dao {
