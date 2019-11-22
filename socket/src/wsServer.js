@@ -1,4 +1,6 @@
 //@flow
+
+//socket-server for oppdatering av livefeed i real-time
 let express: express = require("express");
 let axios: axios= require("axios");
 let socketio: function = require("socket.io");
