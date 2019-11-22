@@ -126,7 +126,7 @@ export class Card extends Component<{ title: React.Node, children?: React.Node}>
     );
   }
 }
-export class ImageCard extends Component<{ title: React.Node, children?: React.Node, image?:String}> {
+export class ImageCard extends Component<{ title: React.Node, children?: React.Node, image?:string}> {
   render() {
     return (
       <div className="card">
@@ -170,9 +170,9 @@ export class ListGroup extends Component<{ children?: React.Node }>{
   }
 }
 
-export class ListGroupItem extends Component<{onClick: ()=>mixed, chilren?: React.Node}>{
+export class ListGroupItem extends Component<{children?: React.Node}>{
   render(){
-    return (<button type="button" className="list-group-item list-group-item-action" onClick={this.props.onClick}>{this.props.children}</button>);
+    return (<button type="button" className="list-group-item list-group-item-action">{this.props.children}</button>);
   }
 }
 

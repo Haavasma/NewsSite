@@ -24,7 +24,7 @@ export class Ratingcomponent extends Component<{ sak_id: number }>{
                 );
 
             return (
-                <Card>
+                <Card title = "">
                     <Row>
                         <Column width={2}>
                             <b>Rating:</b>
@@ -34,7 +34,7 @@ export class Ratingcomponent extends Component<{ sak_id: number }>{
                         </Column>
                         <Column width={1}>
                             <input type="number" min={minValue} max={maxValue} id="myList" placeholder={minValue}
-                                onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.rating.rating = event.target.value)}>
+                                onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.rating.rating = parseInt(event.target.value))}>
                             </input>
                         </Column>
                         <Column>
@@ -45,7 +45,7 @@ export class Ratingcomponent extends Component<{ sak_id: number }>{
             );
         }
         return (
-            <Card>
+            <Card title = "">
                 <Row height={2}>
                     <Column width={2}>
                         <b>Rating:</b>

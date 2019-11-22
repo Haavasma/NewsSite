@@ -11,7 +11,7 @@ import { Login } from '../src/containers/LogIn/index';
 
 
 describe('Alert tests', () => {
-  const wrapper: ShallowWrapper = shallow(<Alert />);
+  const wrapper = shallow(<Alert />);
 
   it('initially', () => {
     let instance: Alert = Alert.instance();
@@ -72,7 +72,7 @@ describe('livefeed test', ()=>{
   sak.tidspunkt = "klokka2";
   let saker: Sak[] = [sak];
   it('renders articleText', ()=>{
-    let instance: LiveFeed = LiveFeed.instance();
+    let instance = LiveFeed.instance();
     instance.saker = saker;
     expect(wrapper.find('NavLink').text()).toEqual(" (" +sak.overskrift + ": " + sak.tidspunkt + ").    .");
   });

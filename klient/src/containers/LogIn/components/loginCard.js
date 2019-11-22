@@ -34,7 +34,7 @@ export class LoginCard extends Component<{ children?: React.Node, bruker: Bruker
         )
     }
 };
-export class FormGroup extends Component<{ text: string, type: string, value: string, onChange: ()=>mixed, placeholder: string }>{
+export class FormGroup extends Component<{ text: string, type: string, value: string, onChange: any, placeholder: string }>{
     render() {
         return (
             <div className="form-group">

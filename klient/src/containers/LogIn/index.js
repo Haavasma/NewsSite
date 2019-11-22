@@ -30,7 +30,7 @@ export class Login extends Component{
       }else{
         return (
           <LoginCard bruker = {this.bruker}>
-            <FormGroup type = "password" placeholder = "gjenta" text = "Gjenta passord" 
+            <FormGroup type = "password" placeholder = "gjenta" text = "Gjenta passord" value = ""
             onChange= {(event: SyntheticInputEvent<HTMLInputElement>) => {this.gjentatt = event.target.value}}></FormGroup>
             <Button.Success onClick = {this.registrerBruker}>Registrer</Button.Success>
           </LoginCard>

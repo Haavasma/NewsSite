@@ -44,17 +44,16 @@ class SakStore {
         return axios.get<Sak[]>('/api/nyheter').then(response => (this.saker = response.data));
     }
     getSak(id: number) {
-        return axios.get<Sak>('/api/nyheter/' + id).then(response => {
-
+        return axios.get('/api/nyheter/' + id).then(response => {
             this.currentSak = response.data[0];
             console.log(response.data);
         });
     }
-    updateSak(token: String) {
+    updateSak() {
         return axios({
             method: 'put', url: '/api/nyheter/' + this.currentSak.sak_id,
             headers: {
-                'x-access-token': localStorage.token
+                'x-access-token': localStorage.getItem("token")
             },
             data: {
                 overskrift: this.currentSak.overskrift,
@@ -66,7 +65,7 @@ class SakStore {
             }
         }).then(response => {
             if (response.data.jwt) {
-                localStorage.token = response.data.jwt;
+                localStorage.setItem("token", response.data.jwt);
             }
             let sak = this.saker.find(sak => sak.sak_id == this.currentSak.sak_id);
             if (sak) Object.assign(sak, { ...this.currentSak });
@@ -92,13 +91,13 @@ class SakStore {
         return axios({
             method: 'delete', url: '/api/nyheter/',
             headers: {
-                'x-access-token': localStorage.token
+                'x-access-token': localStorage.getItem("token")
             }, data: {
                 "sak_id": id,
             }
         }).then(response => {
             if (response.data.jwt) {
-                localStorage.token = response.data.jwt;
+                localStorage.setItem("token", response.data.jwt);
             }
         })
     }
@@ -129,22 +128,21 @@ class KategoriStore {
 }
 
 class BrukerStore {
-    bruker: Bruker;
+    bruker: any;
     autoLogin() {
-        if (localStorage.token) {
-            console.log("token from store: " + localStorage.token);
+        if (localStorage.getItem("token")) {
             return axios<Bruker>({
                 method: 'post',
                 url: '/token',
                 headers: {
-                    "x-access-token": localStorage.token
+                    "x-access-token": localStorage.getItem("token")
                 }
             })
                 .then(response => {
                     if (response.data.jwt) {
                         this.bruker = new Bruker();
                         this.bruker.brukernavn = response.data.brukernavn;
-                        localStorage.token = response.data.jwt;
+                        localStorage.setItem("token", response.data.jwt);
                     }
                     console.log(response);
                 }).catch(error => this.bruker = null);
@@ -158,7 +156,7 @@ class BrukerStore {
         })
     }
     logIn(brukernavn: string, passord: string) {
-        return axios.post<Bruker>('/api/login', {
+        return axios.post('/api/login', {
             brukernavn: brukernavn,
             passord: passord
         }).then(response => {
@@ -166,14 +164,13 @@ class BrukerStore {
                 this.bruker = new Bruker();
                 this.bruker.brukernavn = brukernavn;
                 this.bruker.passord = passord;
-                localStorage.token = response.data.jwt;
-                console.log("token: " + localStorage.token);
+                localStorage.setItem("token", response.data.jwt);
             }
             console.log(response);
         })
     }
     addBruker(brukernavn: string, passord: string) {
-        return axios.post<Bruker>('/api/bruker', {
+        return axios.post('/api/bruker', {
             brukernavn: brukernavn,
             passord: passord
         }).then(response => {
@@ -186,7 +183,7 @@ class RatingStore {
     currentRating: number;
 
     getRating(sak_id: number) {
-        return axios.get<Rating>('/api/rating/' + sak_id)
+        return axios.get('/api/rating/' + sak_id)
             .then(response => {
                 this.currentRating = response.data[0].avgRating;
                 console.log(response);

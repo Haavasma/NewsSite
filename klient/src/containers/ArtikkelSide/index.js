@@ -30,7 +30,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
                 </Column>
                 <Column>
                   <NavLink to={"/ArtikkelEdit/" + this.props.match.params.sak_id}>
-                    <Button.Success>Rediger artikkel</Button.Success>
+                    <Button.Success onClick = {()=>{console.log("");}}>Rediger artikkel</Button.Success>
                   </NavLink>
                 </Column>
               </Row>
@@ -39,7 +39,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               </ImageCard>
               <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
               </Ratingcomponent>
-              <Card>
+              <Card title ="">
                 <Row>
                   <Column>
                     <b><label>Kallenavn: </label></b>
@@ -87,7 +87,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
               <Ratingcomponent sak_id = {this.props.match.params.sak_id}>
 
               </Ratingcomponent>
-              <Card>
+              <Card title="">
                 <Row>
                   <Column>
                     <b><label>Kallenavn: </label></b>
@@ -134,7 +134,7 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
           </ImageCard>
           <Ratingcomponent sak_id={this.props.match.params.sak_id}>
           </Ratingcomponent>
-          <Card>
+          <Card title ="">
             <Row>
               <Column>
                 <b><label>Kallenavn</label></b>
@@ -190,8 +190,8 @@ export class ArtikkelSide extends Component<{ match: { params: { sak_id: number 
     this.tempBrukerNavn = "";
     this.tempKommentar = "";
     kommentarStore.kommentarer.push(this.kommentar);
-    kommentarStore.addKommentar(this.kommentar)
-      .then(this.kommentar = new Kommentar());
+    kommentarStore.addKommentar(this.kommentar);
+    this.kommentar = new Kommentar();
     return;
   }
   delete() {

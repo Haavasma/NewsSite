@@ -12,7 +12,6 @@ import { createHashHistory } from 'history';
 import { sharedComponentData } from 'react-simplified';
 import { Sak, sakStore, Kommentar, kommentarStore, kategoriStore } from './../../Stores.js';
 const history = createHashHistory();
-var localStorage: Storage;
 
 export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number } } }>{
     render() {
@@ -84,7 +83,7 @@ export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number 
                     type="checkbox"
                     required
                     value="viktig"
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.viktighet = event.target.checked)}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (sakStore.currentSak.viktighet = event.target.checked?1:0)}
                     checked={sakStore.currentSak.viktighet}
                   ></input>
                 </Column>
@@ -128,7 +127,8 @@ export class ArtikkelEdit extends Component<{ match: { params: { sak_id: number 
         Alert.danger("de nødvendige feltene må fylles ut");
         return;
       }
-      sakStore.updateSak(localStorage.token).then(e=>{history.push("/")}).catch((error:Error)=>Alert.danger("Ikke din artikkel"));
+    
+      sakStore.updateSak().then(e=>{history.push("/")}).catch((error:Error)=>Alert.danger("Ikke autorisert"));
       return;
     }
     mounted() {

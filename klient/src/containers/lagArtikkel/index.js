@@ -95,8 +95,8 @@ export class LagArtikkel extends Component {
                     name="viktighet"
                     type="checkbox"
                     required
-                    checked={this.viktighet}
-                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.viktighet = event.target.checked)}
+                    checked={this.sak.viktighet?true:false}
+                    onChange={(event: SyntheticInputEvent<HTMLInputElement>) => (this.sak.viktighet = event.target.checked?1:0)}
                   ></input>
                 </Column>
               </Row>
